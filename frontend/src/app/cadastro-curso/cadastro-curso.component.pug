@@ -1,0 +1,14 @@
+.box-form.padding-padrao
+	h3 Cadastrar curso
+	form#cadastro-curso([formGroup]='formulario', (ngSubmit)='cadastrarCurso()')
+		.form-group
+			label Nome: *
+			input#nome.form-control(type='text', name="nome", formControlName='nome', maxlength=45)
+		.form-group
+			label Valor: *:
+			input#valor.form-control(type='number', name="valor", formControlName='valor', maxlength=9)
+		.form-group
+			label Descrição: *
+			input#descricao.form-control(type='text', name="descricao", formControlName='descricao', maxlength=200)
+
+		button.btn.btn-primary(type='submit', [attr.disabled]="formulario.invalid ? 'disabled' : null") Cadastrar

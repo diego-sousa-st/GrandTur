@@ -1,0 +1,7 @@
+.box-form.padding-padrao#box-email
+	h3 Enviar email para todos os alunos do curso {{ curso?.nome }}
+	form([formGroup]='formulario', (ngSubmit)='enviarEmail()')
+		.form-group
+			label Mensagem: *
+			textarea#mensagem.form-control(name="mensagem", cols="500", rows="10", formControlName='mensagem')
+		button.btn.btn-primary(type='submit', [attr.disabled]="formulario.invalid ? 'disabled' : null") Enviar

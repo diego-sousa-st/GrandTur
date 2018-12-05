@@ -1,0 +1,91 @@
+@import '../../scss/variables';
+
+.container-content {
+
+	display: flex;
+	justify-content: center;
+
+}
+
+.content {
+
+	display: block;
+	float: left;
+
+}
+
+.area-aula {
+
+	width: 69vw;
+
+}
+
+.lista-aulas {
+
+	width: 30vw;
+	height: 100%;
+	background-color: $purple-100;
+
+	li{
+
+		box-sizing: border-box;
+		background-color: $purple-800;
+		color: $white;
+		border: 1px solid $purple-900;
+
+		&:hover{
+
+			cursor: pointer;
+			font-size: 1.1rem;
+			background-color: darken($purple-900, 10%);
+
+		}
+
+	}
+
+}
+
+.video-aula {
+
+}
+
+.imagens {
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+
+}
+
+.area-aula, .lista-aulas {
+
+	// for debugg
+	border: 1px solid black;
+	overflow-y: auto;
+	overflow-x: hidden;
+
+}
+
+iframe {
+
+	width: 70vw;
+	height: 80vh;
+
+}
+
+img {
+
+	margin: 0.7rem;
+	width: 35vw;
+	height: 35vh;
+	border: 1px solid black;
+
+}
+
+.aula-selected {
+
+	background-color: darken($purple-900, 20%) !important;
+	color: $white !important;
+
+}

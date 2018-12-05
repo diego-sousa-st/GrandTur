@@ -33,3 +33,6 @@ backend/mvnw.cmd
 backend/.mvn/*
 backend/repo
 backend/target
+
+frontend/node_modules
+

@@ -1,0 +1,57 @@
+@import '../../scss/variables';
+
+#menu {
+
+	width: 100vw;
+	box-sizing: border-box;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: $purple-500;
+	color: $white;
+
+	// for debug
+	border: 1px solid black;
+
+}
+
+.logout {
+
+	display: flex;
+	align-items: center;
+
+}
+
+img {
+
+	width: 10vw;
+	height: 7vw;
+
+}
+
+ul {
+
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+
+}
+
+li {
+
+	display: inline;
+	border: 1px solid black;
+	padding: 0.6rem;
+
+}
+
+a {
+
+	&:hover {
+
+		// background-color: #fff;
+		// color: blue !important;
+
+	}
+
+}

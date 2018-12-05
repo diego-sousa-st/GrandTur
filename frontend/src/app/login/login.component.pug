@@ -1,0 +1,12 @@
+form.account-block.padding-padrao([formGroup]='formulario', (ngSubmit)='login()')
+	h3 Login
+	.form-group
+		label Email:
+		input.form-control#email(type="email", formControlName='email')
+	.form-group
+		label Senha:
+		input.form-control#senha(type="password", formControlName='senha')
+	.form-group
+		button.btn.btn-primary.mr-2(type="submit", [attr.disabled]="formulario.invalid ? 'disabled' : null") Logar
+		span Não tem cadastro? Cadastre-se
+			a.a-link((click)='goToCadastro()')  aqui!

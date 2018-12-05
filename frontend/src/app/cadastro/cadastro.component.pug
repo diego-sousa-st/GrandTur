@@ -1,0 +1,36 @@
+form.account-block.padding-padrao([formGroup]='formulario', (ngSubmit)='cadastrarUsuario()')
+	h3 Cadastro
+	.form-group
+		label Nome: *
+		input.form-control#nome(type="text", formControlName='nome')
+	.form-group
+		.form-row
+			.col-6
+				label CPF: *
+				input.form-control#cpf(type="number", formControlName='cpf', maxlength='11')
+			.col-6
+				label Sexo: *
+				select.form-control(formControlName='sexo')
+					option(value='sexo.masculino') M
+					option(value='sexo.feminino') F
+	.form-group
+		label Email: *
+		input.form-control#email(type="email", formControlName='email')
+	.form-group
+		label Senha: *
+		input.form-control#senha(type="password", [ngClass]="senhasConferem() ? 'border-green' : ''",
+			formControlName='senha', placeholder="A senha deve conter no mínimo 15 caracteres"
+		)
+	.form-group
+		label Redigite a senha: *
+		input.form-control#redigiteSenha(type="password", [ngClass]="senhasConferem() ? 'border-green' : ''",
+			formControlName='senhaRedigitada', placeholder="A senha deve conter no mínimo 15 caracteres"
+		)
+	//- TODO recaptcha
+	.form-group
+		button.btn.btn-primary.mr-2(type="submit") Cadastrar
+		span Já possui cadastro? Faça login
+			a((click)='goToLogin()')  aqui.
+	.form-group
+		span É professor e tem algo de bom para compartilhar? Cadastre-se
+			a((click)='goToCadastroProfessor()')  aqui.

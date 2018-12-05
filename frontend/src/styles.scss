@@ -1,0 +1,119 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import 'scss/global.scss';
+
+a:hover {
+
+	cursor: pointer;
+
+}
+
+.a-link {
+
+	text-decoration: underline !important;
+	color: $purple-900 !important;
+
+}
+
+.padding-padrao {
+
+	padding: 1rem;
+
+}
+
+input, textarea, select {
+
+	&.ng-invalid.ng-touched {
+
+		border: 1px solid red;
+
+	}
+
+}
+
+button {
+
+	&:disabled {
+
+		cursor: not-allowed;
+
+	}
+
+}
+
+.box-form {
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	box-sizing: border-box;
+	width: 100% !important;
+
+	// for debugg
+	border: 1px solid black;
+
+}
+
+.img-padrao {
+
+	margin: 0 1vw;
+
+}
+
+// for fa toggle
+
+[data-toggle="collapse"] .fa:before {
+
+	content: "\f078";
+
+}
+
+[data-toggle="collapse"].collapsed .fa:before {
+
+	content: "\f054";
+
+}
+
+//button
+
+.btn,
+.btn-primary,
+.btn-secondary {
+
+	box-shadow: none;
+
+	&:focus{
+
+		box-shadow: none;
+
+	}
+}
+
+.btn-primary:not(:disabled):not(.disabled):active:focus {
+
+	box-shadow: none;
+
+}
+
+// mininum height for the inside elements
+#aprovacao, #listagem-curso, #box-email, #perfil, #cadastro-curso {
+
+	min-height: 70vh;
+
+}
+
+.account-block {
+
+	min-width: 50vw;
+	border: 1px solid $purple-900;
+	border-radius: 1%;
+	box-shadow: 10px 10px 3px 0px rgba($color: #000000, $alpha: 0.7);
+
+}
+
+.border-green {
+
+	border: 1px solid green;
+
+}

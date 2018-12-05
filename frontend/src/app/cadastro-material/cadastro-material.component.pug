@@ -1,0 +1,17 @@
+.box-form.padding-padrao
+	h3 Cadastrar material para o curso {{ curso?.nome }}
+	form([formGroup]='formulario', (ngSubmit)='cadastrarMaterial()')
+		.form-group
+			label Nome: *
+			input#nome.form-control(type='text', name="nome", formControlName='nome', maxlength=45)
+		.form-group
+			label Texto: *:
+			textarea#texto.form-control(name="texto", rows=10, cols=500, formControlName='texto', maxlength=2000)
+		.form-group
+			label Link da video aula: *
+			input#linkVideoAula.form-control(type='text', name="linkVideoAula", formControlName='linkVideoAula', maxlength=200)
+		.form-group
+			label.d-block Imagens: *
+			input#imagem(type='file', name="imagem", formControlName='imagem', maxlength=45, multiple)
+
+		button.btn.btn-primary(type='submit', [attr.disabled]="formulario.invalid ? 'disabled' : null") Cadastrar

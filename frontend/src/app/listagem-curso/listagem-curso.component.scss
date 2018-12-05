@@ -1,0 +1,13 @@
+#listagem-curso {
+
+	width: 100%;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+	align-items: center;
+	box-sizing: border-box;
+
+	// for debug
+	border: 1px solid black;
+
+}

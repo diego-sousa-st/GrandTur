@@ -1,0 +1,14 @@
+.w-100#item-curso
+	.w-100.title
+		h5 {{ getNome() }}
+	.w-100.image
+		img([src]="getImageSource()", alt="Imagem de curso")
+	.w-100#action-area
+		button.btn.btn-primary.btn-action((click)='visualizar()', title='Visualizar curso')
+			i.fa.fa-fw.fa-eye
+		button.btn.btn-primary.btn-action(*ngIf='modoExibicaoIsCliente()', (click)='comprar()', title='Comprar curso')
+			i.fa.fa-fw.fa-dollar
+		button.btn.btn-primary.btn-action(*ngIf='modoExibicaoIsProfessor()', (click)='cadastrarMaterial()', title='Adicionar material ao curso')
+			i.fa.fa-fw.fa-plus
+		button.btn.btn-primary.btn-action(*ngIf='modoExibicaoIsProfessor()', (click)='enviarEmail()', title='Enviar email aos alunos do curso')
+			i.fa.fa-fw.fa-envelope

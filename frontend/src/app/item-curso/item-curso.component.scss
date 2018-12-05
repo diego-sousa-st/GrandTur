@@ -1,0 +1,74 @@
+#item-curso {
+
+	max-width: 40rem;
+	max-height: 40rem;
+	width: 25vw !important;
+	height: 40vh !important;
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	flex-direction: column;
+
+	// for debug
+	border: 1px solid black;
+	position: relative;
+
+}
+
+.title {
+
+	background-color: #fff;
+	padding: 0.5rem;
+
+	// for debug
+	border: 1px solid black;
+
+}
+
+h5 {
+
+	color: #ffffff !important;
+	text-shadow: 2px 0 0 #242222ef, -2px 0 0 #242222ef, 0 2px 0 #242222ef, 0 -2px 0 #242222ef, 1px 1px #242222ef, -1px -1px 0 #242222ef, 1px -1px 0 #242222ef, -1px 1px 0 #242222ef;
+
+}
+
+#action-area {
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	// for debug
+	border: 1px solid black;
+
+}
+
+.btn-action {
+
+	border-radius: 55%;
+	color: white;
+	margin: 2.5%;
+
+}
+
+i {
+
+	margin: 0.7rem 0.3rem;
+
+}
+
+.image {
+
+	height: 21vh;
+
+	// for debugg
+	border: 1px solid black;
+
+}
+
+img {
+
+	width: 100%;
+	height: 100%;
+
+}

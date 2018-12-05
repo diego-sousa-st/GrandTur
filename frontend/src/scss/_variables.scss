@@ -1,0 +1,95 @@
+/*
+* Bootstrap overrides https://getbootstrap.com/docs/4.0/getting-started/theming/
+* All values defined in bootstrap source
+* https://github.com/twbs/bootstrap/blob/v4-dev/scss/_variables.scss can be overwritten here
+* Make sure not to add  to values here
+*/
+
+// Sobrescrita de variáveis do Bootstrap
+
+$white:    #FBFCFC;
+$purple-100: #e7daff;
+$purple-200: #dfcefd;
+$purple-300: #d2b9ff;
+$purple-400: #bb97ff;
+$purple-500: #a87aff;
+$purple-600: #965eff;
+$purple-700: #803bff;
+$purple-800: #6715ff;
+$purple-900: #4d0bc9;
+$black:    #000;
+
+$blue:    #007bff;
+$indigo:  #6610f2;
+$purple:  #6f42c1;
+$pink:    #e83e8c;
+$red:     #dc3545;
+$orange:  #fd7e14;
+$yellow:  #ffc107;
+$green:   #28a745;
+$teal:    #20c997;
+$cyan:    #17a2b8;
+
+$primary: darken($purple, 20%);
+$secondary: lighten($purple, 20%);
+$success:             #28a745;
+$info:                #17a2b8;
+$warning:             #ffc107;
+$danger:              #dc3545;
+$light: lighten($primary, 8%);
+$dark: darken($primary, 8%);
+
+$theme-colors: ();
+$theme-colors: map-merge((
+  "primary":    $primary,
+  "secondary":  $secondary,
+  "success":    $success,
+  "info":       $info,
+  "warning":    $warning,
+  "danger":     $danger,
+  "light":      $light,
+  "dark":       $dark
+), $theme-colors);
+
+// Options:
+// Quickly modify global styling by enabling or disabling optional features.
+$enable-rounded:            true;
+$enable-shadows:            false;
+$enable-gradients:          false;
+$enable-transitions:        true;
+$enable-hover-media-query:  false;
+$enable-grid-classes:       true;
+$enable-print-styles:       true;
+
+// Components:
+// Define common padding and border radius sizes and more.
+
+$border-radius:          .15rem;
+$border-radius-lg:       .125rem;
+$border-radius-sm:       .1rem;
+
+// Body:
+// Settings for the `<body>` element.
+
+$body-bg:                   #ffffff;
+
+// Typography:
+// Font, line-height, and color for body text, headings, and more.
+
+$font-size-base:            1rem;
+
+// logo
+$logo: "../assets/logo.jpeg";
+
+// Margens and Paddings
+$standard-margin: 30px;
+$standard-padding: 20px;
+
+$header-margin: 15px;
+$card-padding: $standard-padding;
+
+$bgHighLight: $purple-300;
+$bgNormal: lighten($purple-200,3%);
+$borderColor: $purple-400;
+$configBorderBox: 1px solid $borderColor;
+$configBorderBoxTables: 1px solid darken($borderColor, 8);

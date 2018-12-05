@@ -1,0 +1,40 @@
+@import 'variables';
+@import 'colors';
+
+.table-bordered {
+
+	tr {
+
+		th, td {
+
+			border: $configBorderBoxTables;
+			vertical-align: middle;
+
+		}
+
+		td {
+
+			vertical-align: middle;
+
+		}
+
+	}
+
+}
+
+table .form-control:focus {
+
+	border-color: $purple-400;
+	box-shadow: none;
+
+}
+
+table {
+
+	thead {
+
+		background-color: $bgHighLight;
+
+	}
+
+}

@@ -1,0 +1,67 @@
+.padding-padrao#aprovacao
+	h3 {{ textSelecionado.title }}
+	table.table-striped.table-hover.table.table-sm.table-bordered.scroll
+
+		thead.text-center
+			tr
+				th.td-toggle
+				th.td-name Nome
+				th.td-acao Ação
+
+		tbody(*ngIf='aprovacaoIsProfessor() && canLoad()')
+			ng-container(*ngFor='let professor of professoresNaoAprovados; index as i;')
+				tr.text-center
+					td.collapsed.pointer.td-toggle(data-toggle="collapse", [attr.data-target]="'#trprofessor'+i")
+						i.fa.fa-fw
+					td.collapsed.pointer.td-name(data-toggle="collapse", [attr.data-target]="'#trprofessor'+i") {{ professor.nome }}
+					td.collapsed.td-acao
+						button.btn.btn-success.mr-2((click)='aprovarProfessor(true, professor)') Aprovar
+						button.btn.btn-danger((click)='aprovarProfessor(false, professor)') Reprovar
+
+				tr.collapse(id="{{'trprofessor'+i}}")
+					td.td-scroll(colspan=3)
+						.ml-2
+							.row.mb-2
+								.col-xl-12.col-lg-12.col-md-12
+									label.mb-0.mr-2 Nome:
+									span {{ professor.nome }}
+
+							.row.mb-2
+								.col-xl-4.col-lg-4.col-md-12
+									label.mb-0.mr-2 CPF:
+									span {{ professor.cpf }}
+								.col-xl-4.col-lg-4.col-md-12
+									label.mb-0.mr-2 Sexo:
+									span {{ professor.sexo }}
+
+								.col-xl-4.col-lg-4.col-md-12
+									label.mb-0.mr-2 Email:
+									span {{ professor.email }}
+
+		tbody(*ngIf='!aprovacaoIsProfessor() && canLoad()')
+			ng-container(*ngFor='let curso of cursosNaoAprovados; index as i;')
+				tr.text-center
+					td.collapsed.pointer.td-toggle(data-toggle="collapse", [attr.data-target]="'#trcurso'+i")
+						i.fa.fa-fw
+					td.collapsed.pointer.td-name(data-toggle="collapse", [attr.data-target]="'#trcurso'+i") {{ curso.nome }}
+					td.collapsed.td-acao
+						button.btn.btn-success.mr-2((click)='aprovarCurso(true, curso)') Aprovar
+						button.btn.btn-danger((click)='aprovarCurso(false, curso)') Reprovar
+
+				tr.collapse(id="{{'trcurso'+i}}")
+					td.td-scroll(colspan=3)
+						.ml-2
+							.row.mb-2
+								.col-xl-12.col-lg-12.col-md-12
+									label.mb-0.mr-2 Nome:
+									span {{ curso.nome }}
+
+							.row.mb-2
+								.col-xl-12.col-lg-12.col-md-12
+									label.mb-0.mr-2 Valor:
+									span {{ curso.valor | currency:'BRL' }}
+							.row.mb-2
+								.col-xl-12.col-lg-12.col-md-12
+									label.mb-0.mr-2 Descrição:
+									span {{ curso.descricao }}
+

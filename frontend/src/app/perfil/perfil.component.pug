@@ -1,0 +1,31 @@
+form#perfil.padding-padrao((submit)='editarUsuario()')
+	h3 Perfil
+	.form-group
+		label Nome:
+		input.form-control#nome(type="text", [attr.disabled]="isEditing() ? null : true ")
+	.form-group
+		.form-row
+			.col-6
+				label CPF:
+				input.form-control#cpf(type="text", [attr.disabled]="isEditing() ? null : true ")
+			.col-6
+				label Sexo:
+				select.form-control([attr.disabled]="isEditing() ? null : true ")
+					option(value='sexo.masculino') M
+					option(value='sexo.feminino') F
+	.form-group
+		label Email:
+		input.form-control#email(type="email", [attr.disabled]="isEditing() ? null : true ")
+	.form-group
+		label Senha antiga:
+		input.form-control#senhaAntiga(type="password", [attr.disabled]="isEditing() ? null : true ")
+	.form-group
+		label Nova senha:
+		input.form-control#senha(type="password", [attr.disabled]="isEditing() ? null : true ")
+	.form-group
+		label Redigite a nova senha:
+		input.form-control#redigiteSenha(type="password", [attr.disabled]="isEditing() ? null : true ")
+
+	.form-group
+		button.btn.btn-primary.mr-2(type="button", (click)='setIsEditing(true)', *ngIf='!isEditing()') Editar perfil
+		button.btn.btn-primary.mr-2(type="submit", *ngIf='isEditing()') Salvar alterações

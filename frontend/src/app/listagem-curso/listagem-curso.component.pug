@@ -1,0 +1,7 @@
+.padding-padrao#listagem-curso
+	ng-container(*ngIf='modoExibicaoIsProfessor()')
+		ng-container(*ngFor='let curso of cursosCadastrados; index as i;')
+			app-item-curso.m-2([item]='curso', [modoExibicao]='modoExibicao')
+	ng-container(*ngIf='!modoExibicaoIsProfessor()')
+		ng-container(*ngFor='let curso of cursosComprados; index as i;')
+			app-item-curso.m-2([item]='curso', [modoExibicao]='modoExibicao')

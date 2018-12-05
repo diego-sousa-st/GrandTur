@@ -1,0 +1,23 @@
+.padding-padrao.m-0#menu
+	img.img-padrao(src="assets/logo.jpeg", alt="Logo vip class")
+	ul(*ngIf='usuarioIsProfessor()')
+		a((click)='goToCadastroCurso()', title="Cadastrar curso")
+			li.btn-primary  Cadastrar curso
+		a((click)='goToCursosCadastrados()', title="Cursos cadastrados")
+			li.btn-primary Cursos cadastrados
+	ul(*ngIf='usuarioIsAdmin()')
+		a((click)='goToAprovacaoProfessor()', title="Aprovar cadastro de professores")
+			li.btn-primary  Aprovação de professor
+		a((click)='goToAprovacaoCurso()', title="Aprovar cadastro de cursos")
+			li.btn-primary Aprovação de cursos
+	ul(*ngIf='usuarioIsCliente()')
+		a((click)='goToHome()', title="Home")
+			li.btn-primary Home
+		a((click)='goToMeusCursos()', title="Meus cursos")
+			li.btn-primary Meus cursos
+	.logout
+		a.mr-3((click)='goToPerfil()') {{ 'Usuário: ' + usuario.nome }}
+		button.btn.btn-primary((click)='logout()', title="Sair")
+			span.mr-2 Sair
+			i.fa.fa-fw.fa-arrow-right
+

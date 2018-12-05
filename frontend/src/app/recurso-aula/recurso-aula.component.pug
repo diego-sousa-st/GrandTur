@@ -1,0 +1,17 @@
+.container-content#recurso-aula
+	.content
+		.area-aula
+			.video-aula(*ngIf='aulaTemVideo()')
+				iframe([src]='getLinkVideoAula()', frameborder='0', allow='autoplay; encrypted-media', allowfullscreen='')
+			.imagens.padding-padrao(*ngIf='aulaTemImagens()')
+				h3 Imagens da aula
+				img(*ngFor='let imagem of aula.imagens; index as i;', [src]="imagem.caminho", title="{{'Imagem' + i}}")
+	.content
+		.lista-aulas
+			ul.list-group
+				li.list-group-item(*ngFor='let aula of aulas; index as i;',
+					(click)='trocarAulaSelecionada(i)',
+					title='{{ aula.nome }}',
+					[ngClass]="aulaIsSelected(i) ? 'aula-selected' : ''"
+				) {{ aula.nome }}
+
