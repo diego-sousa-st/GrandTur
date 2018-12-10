@@ -1,6 +1,7 @@
 package br.ufla.dcc.diegosousa.grandtur.controllers;
 
 import br.ufla.dcc.diegosousa.grandtur.models.Usuario;
+import br.ufla.dcc.diegosousa.grandtur.serializers.BooleanDTOSerializer;
 import br.ufla.dcc.diegosousa.grandtur.serializers.UsuarioSerializer;
 import br.ufla.dcc.diegosousa.grandtur.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,13 @@ public class Usuarios extends BaseController {
     public void save(@RequestBody Usuario usuario) {
 
         this.usuarioService.save(usuario);
+
+    }
+
+    @PostMapping("usuarios/login")
+    public String login(@RequestBody Usuario usuario) {
+
+        return renderJSON(this.usuarioService.login(usuario), BooleanDTOSerializer.result);
 
     }
 

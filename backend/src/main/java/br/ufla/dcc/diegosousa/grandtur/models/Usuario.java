@@ -33,6 +33,9 @@ public class Usuario {
     @OneToMany(mappedBy = "usuario")
     private Set<PontoTuristico> pontosTuristicos;
 
+    @OneToMany(mappedBy = "usuario")
+    private Set<Compra> compras;
+
     public Usuario() {
 
         super();

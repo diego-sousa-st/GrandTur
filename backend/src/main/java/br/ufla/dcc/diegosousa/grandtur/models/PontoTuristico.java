@@ -47,7 +47,7 @@ public class PontoTuristico {
     public PontoTuristico() {
 
         super();
-        
+
     }
 
 }
