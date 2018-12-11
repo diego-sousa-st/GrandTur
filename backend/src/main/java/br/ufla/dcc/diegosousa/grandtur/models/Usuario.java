@@ -42,4 +42,10 @@ public class Usuario {
 
     }
 
+    public void comprarCredito(Integer valor) {
+
+        this.credito += valor;
+
+    }
+
 }

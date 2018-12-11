@@ -11,4 +11,8 @@ public interface UsuarioService {
 
     BooleanDTO login(Usuario usuario);
 
+    Integer getNumeroUsuariosAtivos();
+
+    void comprarCredito(String cpfUsuario, Integer valor);
+
 }

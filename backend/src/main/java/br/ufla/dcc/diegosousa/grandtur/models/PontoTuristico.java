@@ -35,7 +35,7 @@ public class PontoTuristico {
     private Integer valor;
 
     @Column
-    private Integer ativo;
+    private Boolean ativo;
 
     @ManyToOne
     @JoinColumn(name = "usuario_cpf")

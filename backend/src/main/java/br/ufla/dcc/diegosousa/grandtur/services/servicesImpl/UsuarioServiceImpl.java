@@ -47,4 +47,27 @@ public class UsuarioServiceImpl implements UsuarioService {
         return new BooleanDTO(false);
 
     }
+
+    @Override
+    public Integer getNumeroUsuariosAtivos() {
+
+        return this.usuarioRepository.countAllUsers();
+
+    }
+
+    @Override
+    public void comprarCredito(String cpfUsuario, Integer valor) {
+
+        Usuario usuarioSalvo = this.usuarioRepository.findByCpf(cpfUsuario);
+
+        if(usuarioSalvo != null) {
+
+            usuarioSalvo.comprarCredito(valor);
+
+        }
+
+        this.usuarioRepository.save(usuarioSalvo);
+
+    }
+
 }

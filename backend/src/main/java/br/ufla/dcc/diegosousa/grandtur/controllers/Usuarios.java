@@ -35,4 +35,11 @@ public class Usuarios extends BaseController {
 
     }
 
+    @GetMapping("usuarios/comprarCredito/{cpfUsuario}/{valor}")
+    public void comprarCredito(@PathVariable("cpfUsuario") String cpfUsuario, @PathVariable("valor") Integer valor) {
+
+        this.usuarioService.comprarCredito(cpfUsuario, valor);
+
+    }
+
 }

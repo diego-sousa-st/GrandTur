@@ -12,4 +12,10 @@ public interface PontoTuristicoService {
 
     Set<PontoTuristico> search(String termo);
 
+    void delete(Integer id);
+
+    PontoTuristico find(Integer id);
+
+    Integer getNumeroPontosTuristicosAtivos();
+
 }
