@@ -10,6 +10,7 @@ import br.ufla.dcc.diegosousa.grandtur.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -43,7 +44,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 
         if(usuarioSalvo != null) {
 
-            if(usuarioSalvo.getSenha() == usuario.getSenha()) {
+            if(usuarioSalvo.getSenha().equals(usuario.getSenha())) {
 
                 return new BooleanDTO(true);
 
@@ -82,6 +83,7 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Override
     public void comprar(Compra compra) {
 
+        compra.setData(new Date());
         this.compraRepository.save(compra);
 
     }

@@ -1,6 +1,7 @@
 package br.ufla.dcc.diegosousa.grandtur.services.servicesImpl;
 
 import br.ufla.dcc.diegosousa.grandtur.models.BalancoFinanceiro;
+import br.ufla.dcc.diegosousa.grandtur.repositories.CompraRepository;
 import br.ufla.dcc.diegosousa.grandtur.services.BalancoFinanceiroService;
 import br.ufla.dcc.diegosousa.grandtur.services.PontoTuristicoService;
 import br.ufla.dcc.diegosousa.grandtur.services.UsuarioService;
@@ -16,18 +17,25 @@ public class BalancoFinanceiroServiceImpl implements BalancoFinanceiroService {
     @Autowired
     private PontoTuristicoService pontoTuristicoService;
 
+    @Autowired
+    private CompraRepository compraRepository;
+
     @Override
     public BalancoFinanceiro getBalancoFinanceiroCompleto() {
 
         BalancoFinanceiro balancoFinanceiro = new BalancoFinanceiro();
 
-        balancoFinanceiro.setNumeroUsuarios(this.usuarioService.getNumeroUsuariosAtivos());
-        balancoFinanceiro.setNumeroUsuarios(this.pontoTuristicoService.getNumeroPontosTuristicosAtivos());
-//        TODO calcular numero de vendas realizada
+        Integer numeroUsuariosAtivos = this.usuarioService.getNumeroUsuariosAtivos();
 
-//        TODO calcular media de gasto por cada usuario
+        balancoFinanceiro.setNumeroUsuarios(numeroUsuariosAtivos);
 
-//        TODO calcular receita total
+        Double receitaTotal = this.compraRepository.calculateReceita();
+
+        balancoFinanceiro.setReceita(receitaTotal);
+
+        balancoFinanceiro.setNumeroPontosTuristicos(this.pontoTuristicoService.getNumeroPontosTuristicosAtivos());
+        balancoFinanceiro.setNumeroVendas(this.compraRepository.countCompras());
+        balancoFinanceiro.setMediaGastoPorUsuario(receitaTotal/numeroUsuariosAtivos);
 
         return balancoFinanceiro;
 

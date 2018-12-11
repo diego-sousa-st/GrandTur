@@ -13,14 +13,14 @@ public class BalancosFinanceiros extends BaseController {
     private BalancoFinanceiroService balancoFinanceiroService;
 
     @GetMapping("balancoFinanceiro/completo")
-    private String getBalancoFinanceiroCompleto() {
+    public String getBalancoFinanceiroCompleto() {
 
         return renderJSON(this.balancoFinanceiroService.getBalancoFinanceiroCompleto(), BalancoFinanceiroSerializer.find);
 
     }
 
     @GetMapping("balancoFinanceiro/atual")
-    private String getBalancoFinanceiroAtual() {
+    public String getBalancoFinanceiroAtual() {
 
         return renderJSON(this.balancoFinanceiroService.getBalancoFinanceiroAtual(), BalancoFinanceiroSerializer.find);
 

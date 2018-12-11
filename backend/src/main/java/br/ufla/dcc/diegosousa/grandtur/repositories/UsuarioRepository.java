@@ -15,7 +15,7 @@ public interface UsuarioRepository extends JpaRepository<Usuario, String> {
 
     Usuario findByEmail(String email);
 
-    @Query(value = "SELECT COUNT(*) FROM usuarios WHERE id IS NOT NULL AND e_admin = FALSE", nativeQuery = true)
+    @Query(value = "SELECT COUNT(*) FROM usuario WHERE cpf IS NOT NULL AND e_admin = FALSE", nativeQuery = true)
     Integer countAllUsers();
 
 }

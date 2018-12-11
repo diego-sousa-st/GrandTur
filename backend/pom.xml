@@ -110,6 +110,13 @@
 			<artifactId>json</artifactId>
 			<version>20180130</version>
 		</dependency>
+		<!--Apache commons IO-->
+		<!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.6</version>
+		</dependency>
 		<dependency>
 			<groupId>com.gurobi</groupId>
 			<artifactId>gurobi</artifactId>
