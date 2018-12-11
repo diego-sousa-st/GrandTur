@@ -1,0 +1,1 @@
+INSERT INTO `grandtur`.`usuario` values ('admin@gmail.com', 'Paulo Administrador Geral', '12345', '14455599705', 0, 1);

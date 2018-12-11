@@ -16,11 +16,13 @@ public class Compra implements Serializable {
     private static final long serialVersionUID = 100L;
 
     @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    private Integer id;
+
     @ManyToOne()
     @JoinColumn(name = "usuario_cpf")
     private Usuario usuario;
 
-    @Id
     @ManyToOne()
     @JoinColumn(name = "ponto_turistico_id")
     private PontoTuristico pontoTuristico;

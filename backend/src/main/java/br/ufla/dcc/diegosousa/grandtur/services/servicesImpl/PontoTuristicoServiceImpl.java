@@ -1,8 +1,10 @@
 package br.ufla.dcc.diegosousa.grandtur.services.servicesImpl;
 
 import br.ufla.dcc.diegosousa.grandtur.models.PontoTuristico;
+import br.ufla.dcc.diegosousa.grandtur.models.Usuario;
 import br.ufla.dcc.diegosousa.grandtur.repositories.PontoTuristicoRepository;
 import br.ufla.dcc.diegosousa.grandtur.services.PontoTuristicoService;
+import br.ufla.dcc.diegosousa.grandtur.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +17,9 @@ public class PontoTuristicoServiceImpl implements PontoTuristicoService {
 
     @Autowired
     private PontoTuristicoRepository pontoTuristicoRepository;
+
+    @Autowired
+    private UsuarioService usuarioService;
 
     @Override
     public Set<PontoTuristico> findUltimos10PontosCadastrados(String cpfUsuario) {
@@ -72,6 +77,13 @@ public class PontoTuristicoServiceImpl implements PontoTuristicoService {
     public Integer getNumeroPontosTuristicosAtivos() {
 
         return this.pontoTuristicoRepository.countAllPontosTuristicosAtivos();
+
+    }
+
+    @Override
+    public Set<PontoTuristico> getPontosTuristicosVisitados(String cpfUsuario) {
+
+        return this.usuarioService.getPontosTuristicosVisitados(cpfUsuario);
 
     }
 

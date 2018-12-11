@@ -1,5 +1,6 @@
 package br.ufla.dcc.diegosousa.grandtur.controllers;
 
+import br.ufla.dcc.diegosousa.grandtur.models.Compra;
 import br.ufla.dcc.diegosousa.grandtur.models.Usuario;
 import br.ufla.dcc.diegosousa.grandtur.serializers.BooleanDTOSerializer;
 import br.ufla.dcc.diegosousa.grandtur.serializers.UsuarioSerializer;
@@ -39,6 +40,13 @@ public class Usuarios extends BaseController {
     public void comprarCredito(@PathVariable("cpfUsuario") String cpfUsuario, @PathVariable("valor") Integer valor) {
 
         this.usuarioService.comprarCredito(cpfUsuario, valor);
+
+    }
+
+    @PostMapping("usuarios/comprarTicket")
+    public void comprarTicket(@RequestBody Compra compra) {
+
+        this.usuarioService.comprar(compra);
 
     }
 

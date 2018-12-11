@@ -1,17 +1,26 @@
 package br.ufla.dcc.diegosousa.grandtur.services.servicesImpl;
 
 import br.ufla.dcc.diegosousa.grandtur.DTOs.BooleanDTO;
+import br.ufla.dcc.diegosousa.grandtur.models.Compra;
+import br.ufla.dcc.diegosousa.grandtur.models.PontoTuristico;
 import br.ufla.dcc.diegosousa.grandtur.models.Usuario;
+import br.ufla.dcc.diegosousa.grandtur.repositories.CompraRepository;
 import br.ufla.dcc.diegosousa.grandtur.repositories.UsuarioRepository;
 import br.ufla.dcc.diegosousa.grandtur.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Service
 public class UsuarioServiceImpl implements UsuarioService {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
+
+    @Autowired
+    private CompraRepository compraRepository;
 
     @Override
     public Usuario findByCpf(String cpf) {
@@ -67,6 +76,31 @@ public class UsuarioServiceImpl implements UsuarioService {
         }
 
         this.usuarioRepository.save(usuarioSalvo);
+
+    }
+
+    @Override
+    public void comprar(Compra compra) {
+
+        this.compraRepository.save(compra);
+
+    }
+
+    @Override
+    public Set<PontoTuristico> getPontosTuristicosVisitados(String cpfUsuario) {
+
+        Usuario usuarioSalvo = this.usuarioRepository.findByCpf(cpfUsuario);
+
+        Set<PontoTuristico> pontoTuristicosVisitados = new HashSet<PontoTuristico>();
+
+        if(usuarioSalvo != null) {
+
+            Set<Compra> compras = usuarioSalvo.getCompras();
+            compras.forEach(compra -> pontoTuristicosVisitados.add(compra.getPontoTuristico()));
+
+        }
+
+        return pontoTuristicosVisitados;
 
     }
 

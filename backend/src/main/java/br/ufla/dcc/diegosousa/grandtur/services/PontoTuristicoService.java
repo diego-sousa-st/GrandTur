@@ -18,4 +18,6 @@ public interface PontoTuristicoService {
 
     Integer getNumeroPontosTuristicosAtivos();
 
+    Set<PontoTuristico> getPontosTuristicosVisitados(String cpfUsuario);
+
 }

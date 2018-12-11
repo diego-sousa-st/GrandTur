@@ -47,4 +47,11 @@ public class PontosTuristicos extends BaseController {
 
     }
 
+    @GetMapping("usuarios/pontosVisitados/{cpfUsuario}")
+    public String getPontosTuristicosVisitados(@PathVariable("cpfUsuario") String cpfUsuario) {
+
+        return renderJSON(this.pontoTuristicoService.getPontosTuristicosVisitados(cpfUsuario), PontoTuristicoSerializer.find);
+
+    }
+
 }
