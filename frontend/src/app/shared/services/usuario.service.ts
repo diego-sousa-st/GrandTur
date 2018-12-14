@@ -8,21 +8,12 @@ export class UsuarioService {
 
 	private usuario: any;
 
-	constructor() {
-
-		this.usuario = {
-			nome: 'José dos testes',
-			cpf: '12345678908',
-			sexo: sexo.masculino,
-			email: 'joseteste@gmail.com',
-			senha: undefined
-		};
-
-	}
+	constructor() {}
 
 	getUsuario(): any {
 
-		this.usuario.perfil = JSON.parse(localStorage.getItem(userStore)).roles[0].authority;
+		this.usuario = JSON.parse(localStorage.getItem(userStore));
+		this.usuario.perfil = this.usuario.roles[0].authority;
 
 		return this.usuario;
 

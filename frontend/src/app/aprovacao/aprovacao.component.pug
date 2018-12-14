@@ -37,6 +37,8 @@
 								.col-xl-4.col-lg-4.col-md-12
 									label.mb-0.mr-2 Email:
 									span {{ professor.email }}
+			tr(*ngIf='professoresNaoAprovados.length === 0')
+				td.text-center(colspan=3) Não existem professores não aprovados
 
 		tbody(*ngIf='!aprovacaoIsProfessor() && canLoad()')
 			ng-container(*ngFor='let curso of cursosNaoAprovados; index as i;')
@@ -64,4 +66,7 @@
 								.col-xl-12.col-lg-12.col-md-12
 									label.mb-0.mr-2 Descrição:
 									span {{ curso.descricao }}
+
+			tr(*ngIf='cursosNaoAprovados.length === 0')
+				td.text-center(colspan=3) Não existem cursos não aprovados
 

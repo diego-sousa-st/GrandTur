@@ -5,6 +5,7 @@ import { NavegacaoService } from '../shared/services/navegacao.service';
 import { LoginService } from '../shared/security/services/login.service';
 import { AuthService } from '../shared/security/services/auth.service';
 import { AlertService } from '../shared/services/alert.service';
+import { CadastroService } from '../shared/services/cadastro.service';
 
 @Component({
 	selector: 'app-menu-principal',
@@ -20,7 +21,8 @@ export class MenuPrincipalComponent implements OnInit {
 		private redirectService: NavegacaoService,
 		private loginService: LoginService,
 		private authService: AuthService,
-		private alertService: AlertService
+		private alertService: AlertService,
+		private cadastroService: CadastroService
 	) { }
 
 	ngOnInit() {

@@ -126,7 +126,7 @@ export class AuthService {
 
 	getAuthenticatedUser(): Observable<Response> {
 
-		return this.httpCustomizedService.get(api.FIND_USUARIO_AUTHENTICADO);
+		return of(new Response());
 
 	}
 

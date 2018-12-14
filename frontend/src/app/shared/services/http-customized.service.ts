@@ -4,7 +4,7 @@ import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Observable, empty, throwError } from 'rxjs';
 import { AlertService } from './alert.service';
 import { messages } from '../../app.constants';
-import { catchError } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import * as _ from 'lodash';
 
 @Injectable({
@@ -46,8 +46,8 @@ export class HttpCustomizedService {
 
 	post(url: string, data: any, contentType?: string, responseType?: string): Observable<any> {
 
-		let headers: HttpHeaders = new HttpHeaders();
-		this.appendHeaders(headers, 'Content-Type', 'application/json; charset=utf-8');
+		const headers: HttpHeaders = new HttpHeaders();
+		this.appendHeaders(headers, 'Content-Type', 'application/json');
 
 		return this.catchExceptions(this.http.post(
 
@@ -87,6 +87,31 @@ export class HttpCustomizedService {
 			}
 
 		);
+
+	}
+
+	postWithTextResponse(url: string, data: any) {
+
+		return this.postWithCustomConfig(url, data, 'application/json', 'text').pipe(map((response) => {
+
+			if(typeof response === 'string') {
+
+				try {
+
+					return JSON.parse(response);
+
+				} catch (error) {
+
+					return {
+						status: false,
+						valor: 'Erro ao realizar operação'
+					};
+
+				}
+
+			}
+
+		}));
 
 	}
 

@@ -27,6 +27,7 @@ import { PerfilAdminGuard } from './shared/security/guards/perfilAdmin.guard';
 import { PerfilProfessorGuard } from './shared/security/guards/perfilProfessor.guard';
 import { PerfilClienteGuard } from './shared/security/guards/perfilCliente.guard';
 import { LoginGuard } from './shared/security/guards/login.guard';
+import {NgxMaskModule} from 'ngx-mask'
 
 @NgModule({
 	declarations: [
@@ -52,7 +53,8 @@ import { LoginGuard } from './shared/security/guards/login.guard';
 		BrowserAnimationsModule,
 		HttpClientModule,
 		HttpModule,
-		ToastrModule.forRoot({ positionClass: 'toast-top-center', preventDuplicates: true })
+		ToastrModule.forRoot({ positionClass: 'toast-top-center', preventDuplicates: true }),
+		NgxMaskModule.forRoot()
 	],
 	providers: [
 		{ provide: HTTP_INTERCEPTORS, useClass: HttpAuthResponseInterceptor, multi: true },

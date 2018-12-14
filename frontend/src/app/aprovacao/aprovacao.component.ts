@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { routeParams } from '../app.constants';
+import { AprovacaoService } from '../shared/services/aprovacao.service';
+import { AlertService } from '../shared/services/alert.service';
 
 @Component({
 	selector: 'app-aprovacao',
@@ -26,7 +28,11 @@ export class AprovacaoComponent implements OnInit {
 	cursosNaoAprovados: any[] = [];
 	textSelecionado: any;
 
-	constructor(private activatedRoute: ActivatedRoute) {
+	constructor(
+		private activatedRoute: ActivatedRoute,
+		private aprovacaoService: AprovacaoService,
+		private alertService: AlertService
+	) {
 
 		this.listenToRoute();
 
@@ -64,57 +70,33 @@ export class AprovacaoComponent implements OnInit {
 
 	findProfessoresNaoAprovados() {
 
-		this.professoresNaoAprovados = [
-			{
-				id: 1,
-				nome: 'Joao dos testes lokos',
-				cpf: '12345678904',
-				sexo: 'M',
-				email: 'blabalb@gmail.com'
-			},
-			{
-				id: 2,
-				nome: 'Joao dos testes lokos2',
-				cpf: '12345678905',
-				sexo: 'M',
-				email: 'blabalb@gmail.com'
-			},
-			{
-				id: 3,
-				nome: 'Joao dos testes lokos3',
-				cpf: '12345678906',
-				sexo: 'M',
-				email: 'blabalb@gmail.com'
-			},
-		];
-		// TODO chamar back para buscar a lista de professores não aprovados
+		this.aprovacaoService.findProfessoresNaoAprovados().subscribe(
+			(response) => {
+
+				if(response.status) {
+
+					this.professoresNaoAprovados = response.valor;
+
+				}
+
+			}
+		);
 
 	}
 
 	findCursosNaoAprovados() {
 
-		this.cursosNaoAprovados = [
-			{
-				id: 1,
-				nome: 'Curso loko1',
-				valor: '500',
-				descricao: 'Curso bom pra quem está começanco!'
-			},
-			{
-				id: 2,
-				nome: 'Curso loko1',
-				valor: '500',
-				descricao: 'Curso bom pra quem está começanco!'
-			},
-			{
-				id: 3,
-				nome: 'Curso loko3',
-				valor: '500',
-				descricao: 'Curso bom pra quem está começanco!'
-			},
-		];
-		// TODO chamar back para buscar a lista de cursos não aprovados
+		this.aprovacaoService.findCursosNaoAprovados().subscribe(
+			(response) => {
 
+				if(response.status) {
+
+					this.cursosNaoAprovados = response.valor;
+
+				}
+
+			}
+		);
 
 	}
 
@@ -126,13 +108,43 @@ export class AprovacaoComponent implements OnInit {
 
 	aprovarProfessor(aprovar: boolean, professor: any) {
 
-		// TODO chamar back para aprovar o professor passado
+		this.aprovacaoService.aprovarProfessor(aprovar, professor).subscribe(
+			(response) => {
+
+				if(response.status) {
+
+					this.alertService.showAlert('Ação feita com sucesso', 'success');
+					this.findProfessoresNaoAprovados();
+
+				} else {
+
+					this.alertService.showAlert('Erro ao realizar ação', 'error');
+
+				}
+
+			}
+		);
 
 	}
 
-	aprovarCurso(aprovar: boolean) {
+	aprovarCurso(aprovar: boolean, curso) {
 
-		// TODO chamar back para aprovar o curso passado
+		this.aprovacaoService.aprovarCurso(aprovar, curso).subscribe(
+			(response) => {
+
+				if(response.status) {
+
+					this.alertService.showAlert('Ação feita com sucesso', 'success');
+					this.findCursosNaoAprovados();
+
+				} else {
+
+					this.alertService.showAlert('Erro ao realizar ação', 'error');
+
+				}
+
+			}
+		);
 
 	}
 

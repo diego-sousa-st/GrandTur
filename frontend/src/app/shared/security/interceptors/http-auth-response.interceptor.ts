@@ -4,7 +4,7 @@ import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpResponse } fr
 import { Erro, headersNames } from '../../../app.constants';
 import { AlertService } from '../../services/alert.service';
 
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { NavegacaoService } from '../../services/navegacao.service';
 import { map, catchError } from 'rxjs/operators';
 import { HttpCustomizedService } from '../../services/http-customized.service';
@@ -38,7 +38,7 @@ export class HttpAuthResponseInterceptor implements HttpInterceptor {
 					this.setToken(error);
 					this.errorHandler(error);
 
-					return Observable.throw(error);
+					return throwError(new Error(error.message));
 
 				}));
 

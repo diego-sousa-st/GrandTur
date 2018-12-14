@@ -13,8 +13,7 @@ export class HttpAuthRequestInterceptor implements HttpInterceptor {
 
 	intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-		// const token = localStorage.getItem(headersNames.Authorization);
-		let token = null;
+		const token = localStorage.getItem(headersNames.Authorization);
 
 		if(token) {
 

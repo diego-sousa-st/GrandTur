@@ -17,7 +17,7 @@ export class NavegacaoService {
 
 	redirectToLogin() {
 
-		this.routerService.navigate(['login']);
+		this.routerService.navigate(['login/cliente']);
 
 	}
 
