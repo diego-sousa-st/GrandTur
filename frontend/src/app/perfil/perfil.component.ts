@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from '../shared/services/usuario.service';
-import { CadastroService } from '../shared/services/cadastro.service';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { AlertService } from '../shared/services/alert.service';
 import { sexo } from '../app.constants';
@@ -19,7 +18,6 @@ export class PerfilComponent implements OnInit {
 
 	constructor(
 		private usuarioService: UsuarioService,
-		private cadastroService: CadastroService,
 		private formBuilder: FormBuilder,
 		private alertService: AlertService
 	) {
@@ -40,7 +38,7 @@ export class PerfilComponent implements OnInit {
 			id: null,
 			nome: [null, [Validators.required, Validators.maxLength(45)]],
 			cpf: [null, Validators.required],
-			sexo: [null, Validators.required],
+			// sexo: [null, Validators.required],
 			email: [null, Validators.required],
 			senhaAntiga: [null, [Validators.required, Validators.minLength(10)]],
 			senha: [null, [Validators.required, Validators.minLength(10)]],
@@ -62,26 +60,15 @@ export class PerfilComponent implements OnInit {
 
 	getUsuario() {
 
-		this.cadastroService.findUsuario().subscribe((response) => this.formulario.patchValue(response.valor[0]));
+		this.usuarioService.findUsuario().subscribe((response) => this.formulario.patchValue(response));
 
 	}
 
 	editarUsuario() {
 
-		this.cadastroService.updateUsuario(this.formulario.value).subscribe(
-			(response) => {
-
-				if(response.status) {
-
-					this.alertService.showAlert('Perfil alterado com sucesso', 'success');
-
-				} else {
-
-					this.alertService.showAlert(response.valor, 'error');
-
-				}
-
-			}
+		this.usuarioService.saveUsuario(this.formulario.value).subscribe(
+			() => this.alertService.showAlert('Perfil alterado com sucesso', 'success'),
+			() => this.alertService.showAlert('Erro ao tentar alterar perfil', 'error')
 		);
 
 	}

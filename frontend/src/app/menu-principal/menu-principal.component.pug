@@ -1,20 +1,22 @@
 .padding-padrao.m-0#menu
-	img.img-padrao(src="assets/logo.jpeg", alt="Logo vip class")
-	ul(*ngIf='usuarioIsProfessor()')
-		a((click)='goToCadastroCurso()', title="Cadastrar curso")
-			li.btn-primary  Cadastrar curso
-		a((click)='goToCursosCadastrados()', title="Cursos cadastrados")
-			li.btn-primary Cursos cadastrados
+	img.img-padrao(src="assets/Logo.png", alt="Logo GrandTur")
 	ul(*ngIf='usuarioIsAdmin()')
-		a((click)='goToAprovacaoProfessor()', title="Aprovar cadastro de professores")
-			li.btn-primary  Aprovação de professor
-		a((click)='goToAprovacaoCurso()', title="Aprovar cadastro de cursos")
-			li.btn-primary Aprovação de cursos
+		a((click)='goToCadastroPontoTuristico()', title="Cadastrar ponto turístico")
+			li.btn-primary  Cadastrar ponto turístico
+		a((click)='goToBalancoFinanceiroCompleto()', title="Calcular balanço financeiro completo")
+			li.btn-primary Balanço financeiro completo
+		a((click)='goToBalancoFinanceiroAtual()', title="Calcular balanço financeiro deste mês")
+			li.btn-primary Balanço financeiro atual
+	form.form-inline([formGroup]='formulario', (ngSubmit)='pesquisar()')
+		input#pesquisa.form-control.mr-2(type="text", name="pesquisa", placeholder="Nome, cidade, descrição...", formControlName='termo')
+		button.btn.btn-primary(type="submit")
+			i.fa.fa-fw.fa-search
+
 	ul(*ngIf='usuarioIsCliente()')
-		a((click)='goToHome()', title="Home")
-			li.btn-primary Home
-		a((click)='goToMeusCursos()', title="Meus cursos")
-			li.btn-primary Meus cursos
+		a((click)='goToCompraCreditos()', title="Comprar créditos")
+			li.btn-primary Comprar créditos
+		a((click)='goToMinhasCompras()', title="Minhas compras")
+			li.btn-primary Minhas compras
 	.logout
 		a.mr-3((click)='goToPerfil()') {{ 'Usuário: ' + usuario.nome }}
 		button.btn.btn-primary((click)='logout()', title="Sair")

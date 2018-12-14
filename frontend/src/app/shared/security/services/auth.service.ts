@@ -15,7 +15,7 @@ export class AuthService {
 
 	ROLE_PROFESSOR: string = 'ROLE_PROFESSOR';
 	ROLE_ADMIN: string = 'ROLE_ADMIN';
-	ROLE_ALUNO: string = 'ROLE_ALUNO';
+	ROLE_CLIENTE: string = 'ROLE_CLIENTE';
 
 	authenticated: Subject<boolean> = new Subject();
 	authenticated$ = this.authenticated.asObservable();

@@ -13,7 +13,8 @@ public class UsuarioSerializer {
                     "email",
                     "nome",
                     "cpf",
-                    "credito"
+                    "credito",
+                    "admin"
             )
             .exclude("*")
             .prettyPrint(true);

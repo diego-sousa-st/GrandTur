@@ -33,12 +33,30 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Override
     public void save(Usuario usuario) {
 
-        this.usuarioRepository.save(usuario);
+        Usuario usuarioSalvo = usuario;
+
+        if(!usuario.getCpf().isEmpty()) {
+
+            usuarioSalvo = this.usuarioRepository.findByCpf(usuario.getCpf());
+
+            if(usuarioSalvo != null) {
+
+                usuarioSalvo.update(usuario);
+
+            } else {
+
+                usuarioSalvo = usuario;
+
+            }
+
+        }
+
+        this.usuarioRepository.save(usuarioSalvo);
 
     }
 
     @Override
-    public BooleanDTO login(Usuario usuario) {
+    public Usuario login(Usuario usuario) {
 
         Usuario usuarioSalvo = this.usuarioRepository.findByEmail(usuario.getEmail());
 
@@ -46,15 +64,15 @@ public class UsuarioServiceImpl implements UsuarioService {
 
             if(usuarioSalvo.getSenha().equals(usuario.getSenha())) {
 
-                return new BooleanDTO(true);
+                return usuarioSalvo;
 
             }
 
-            return new BooleanDTO(false);
+            return new Usuario();
 
         }
 
-        return new BooleanDTO(false);
+        return new Usuario();
 
     }
 

@@ -48,4 +48,11 @@ public class Usuario {
 
     }
 
+    public void update(Usuario usuario) {
+
+        email = usuario.getEmail();
+        nome = usuario.getSenha();
+        senha = usuario.getSenha();
+
+    }
 }

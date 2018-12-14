@@ -2,7 +2,9 @@ package br.ufla.dcc.diegosousa.grandtur.controllers;
 
 import br.ufla.dcc.diegosousa.grandtur.results.Json;
 import flexjson.JSONSerializer;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
+@CrossOrigin
 public abstract class BaseController {
 
     /**

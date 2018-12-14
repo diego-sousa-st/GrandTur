@@ -30,15 +30,15 @@ export class ListagemCursoComponent implements OnInit {
 
 		this.subscriptions.push(this.activatedRoute.params.subscribe((params: Params) => {
 
-			if(params.tipo === routeParams.tipo.professor) {
+			if(params.tipo === routeParams.tipo.admin) {
 
-				this.modoExibicao = routeParams.tipo.professor;
+				this.modoExibicao = routeParams.tipo.admin;
 				this.findCursosCadastrados();
 				return;
 
 			}
 
-			this.modoExibicao = routeParams.tipo.aluno;
+			this.modoExibicao = routeParams.tipo.cliente;
 			this.findCursosComprados();
 
 		}));
@@ -90,19 +90,19 @@ export class ListagemCursoComponent implements OnInit {
 				nome: 'Teste 77777'
 			},
 		];
-		// TODO bater no back pra buscar cursos comprados pelo aluno, lembrar de passar o usuário
+		// TODO bater no back pra buscar cursos comprados pelo cliente, lembrar de passar o usuário
 
 	}
 
 	modoExibicaoIsProfessor(): boolean {
 
-		return this.modoExibicao === routeParams.tipo.professor;
+		return this.modoExibicao === routeParams.tipo.admin;
 
 	}
 
 	modoExibicaoIsCliente(): boolean {
 
-		return this.modoExibicao === routeParams.tipo.aluno;
+		return this.modoExibicao === routeParams.tipo.cliente;
 
 	}
 

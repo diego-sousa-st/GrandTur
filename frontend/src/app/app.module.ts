@@ -13,9 +13,7 @@ import { PerfilComponent } from './perfil/perfil.component';
 import { RecursoAulaComponent } from './recurso-aula/recurso-aula.component';
 import { EmailComponent } from './email/email.component';
 import { CadastroMaterialComponent } from './cadastro-material/cadastro-material.component';
-import { CadastroCursoComponent } from './cadastro-curso/cadastro-curso.component';
 import { MenuPrincipalComponent } from './menu-principal/menu-principal.component';
-import { AprovacaoComponent } from './aprovacao/aprovacao.component';
 import { ListagemCursoComponent } from './listagem-curso/listagem-curso.component';
 import { ToastrModule } from 'ngx-toastr';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -40,9 +38,7 @@ import {NgxMaskModule} from 'ngx-mask'
 		RecursoAulaComponent,
 		EmailComponent,
 		CadastroMaterialComponent,
-		CadastroCursoComponent,
 		MenuPrincipalComponent,
-		AprovacaoComponent,
 		ListagemCursoComponent
 	],
 	imports: [

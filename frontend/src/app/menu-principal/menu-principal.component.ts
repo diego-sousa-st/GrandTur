@@ -4,8 +4,8 @@ import { UsuarioService } from '../shared/services/usuario.service';
 import { NavegacaoService } from '../shared/services/navegacao.service';
 import { LoginService } from '../shared/security/services/login.service';
 import { AuthService } from '../shared/security/services/auth.service';
-import { AlertService } from '../shared/services/alert.service';
-import { CadastroService } from '../shared/services/cadastro.service';
+import { FormGroup, FormBuilder } from '@angular/forms';
+import { PontoTuristicoService } from '../shared/services/ponto-turistico.service';
 
 @Component({
 	selector: 'app-menu-principal',
@@ -15,19 +15,29 @@ import { CadastroService } from '../shared/services/cadastro.service';
 export class MenuPrincipalComponent implements OnInit {
 
 	usuario: any;
+	formulario: FormGroup;
 
 	constructor(
 		private usuarioService: UsuarioService,
 		private redirectService: NavegacaoService,
 		private loginService: LoginService,
 		private authService: AuthService,
-		private alertService: AlertService,
-		private cadastroService: CadastroService
+		private formBuilder: FormBuilder,
+		private pontoTuristicoService: PontoTuristicoService
 	) { }
 
 	ngOnInit() {
 
 		this.usuario = this.usuarioService.getUsuario();
+		this.loadForm();
+
+	}
+
+	loadForm() {
+
+		this.formulario = this.formBuilder.group({
+			termo: [null]
+		});
 
 	}
 
@@ -37,15 +47,9 @@ export class MenuPrincipalComponent implements OnInit {
 
 	}
 
-	usuarioIsProfessor(): boolean {
-
-		return this.usuario.perfil === perfis.professor;
-
-	}
-
 	usuarioIsCliente(): boolean  {
 
-		return this.usuario.perfil === perfis.aluno;
+		return this.usuario.perfil === perfis.cliente;
 
 	}
 
@@ -63,37 +67,40 @@ export class MenuPrincipalComponent implements OnInit {
 
 	}
 
-	goToCursosCadastrados() {
-
-		this.redirectService.goTo(routePieces.listagemCurso.professor);
-
-	}
-
-	goToAprovacaoProfessor() {
-
-		this.redirectService.goTo(routePieces.aprovacao.professor);
-
-	}
-
-	goToAprovacaoCurso() {
-
-		this.redirectService.goTo(routePieces.aprovacao.curso);
-
-	}
-
 	goToHome() {
+
+	// TODO enviar para o home componente
 
 	}
 
 	goToMeusCursos() {
 
-		this.redirectService.goTo(routePieces.listagemCurso.aluno);
+		this.redirectService.goTo(routePieces.listagemPonto.cliente);
 
 	}
 
 	goToPerfil() {
 
 		this.redirectService.goTo(routePieces.perfil);
+
+	}
+
+	pesquisar() {
+
+		this.pontoTuristicoService.pesquisar(this.formulario.get('termo').value).subscribe(
+			() => {
+
+				if(this.usuarioIsAdmin()) {
+
+					this.redirectService.goTo(routePieces.listagemPonto.admin);
+					return;
+
+				}
+
+				this.redirectService.goTo(routePieces.listagemPonto.cliente);
+
+			}
+		);
 
 	}
 

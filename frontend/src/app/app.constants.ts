@@ -5,21 +5,18 @@ export const sexo = {
 
 export const perfis = {
 	admin: 'ROLE_ADMIN',
-	professor: 'ROLE_PROFESSOR',
-	aluno: 'ROLE_ALUNO'
+	cliente: 'ROLE_CLIENTE'
 };
 
 export const nivelAcesso = [
 	perfis.admin,
-	perfis.professor,
-	perfis.aluno
+	perfis.cliente
 ]
 
 export const routeParams = {
 	tipo: {
-		professor: 'professor',
 		curso: 'curso',
-		aluno: 'aluno',
+		cliente: 'cliente',
 		admin: 'admin'
 	}
 };
@@ -32,22 +29,30 @@ export const userStore = 'user';
 
 export const messages = {
 	erroNaoIdentificado: 'Erro ocorrido no sistema, contate o administrador',
-	loginSucesso: 'Login efetuado com sucesso!'
+	saldoInsuficiente: 'Você não tem saldo para comprar este item. Por favor recarregue seus créditos na opção comprar crédito.',
+	compraSucesso: 'Compra realizada com sucesso!',
+	loginIncorreto: 'Falha ao efetuar login! Email ou senha incorretos',
+	emailUsado: 'Erro ao criar conta! Este email já está sendo utilizado por outro usuário.'
 };
 
-export const BASE_API = 'http://localhost:8000/';
+export const BASE_API = 'http://localhost:8282/';
 
 export const api = {
-	// TODO inserir as urls aqui do backend
-	FIND_USUARIO: 'URL',
-	FIND_USUARIO_AUTHENTICADO: 'URL',
-	LOGIN: 'URL',
-	LOGOUT: 'URL',
-	ADMINISTRADOR: BASE_API + 'VipClass/backend/api/administrador.php',
-	PROFESSOR: BASE_API + 'VipClass/backend/api/professor.php',
-	ALUNO: BASE_API + 'VipClass/backend/api/aluno.php',
-	CURSO: BASE_API + 'VipClass/backend/api/curso.php',
-	AUTH: BASE_API + 'VipClass/backend/api/autenticacao.php'
+
+	FIND_USUARIO: BASE_API + 'usuarios/{cpf}',
+	SAVE_USUARIO: BASE_API + 'usuarios',
+	LOGIN: BASE_API + 'usuarios/login',
+	COMPRAR_CREDITO: BASE_API + 'usuarios/comprarCredito/{cpfUsuario}/{valor}',
+	COMPRAR_TICKET: BASE_API + 'usuarios/comprarTicket',
+	FIND_10_ULTIMOS_PONTOS_CADASTRADOS: BASE_API + 'pontosTuristicos/10ultimosCadastrados/{cpfUsuario}',
+	SAVE_PONTOS_TURISTICOS: BASE_API + 'pontosTuristicos',
+	PESQUISA: BASE_API + 'pontosTuristicos/search/{termo}',
+	DELETE_PONTO_TURISTICO: BASE_API + 'pontosTuristicos/delete/{id}',
+	FIND_PONTO_TURISTICO: BASE_API + 'pontosTuristicos/{id}',
+	FIND_PONTOS_TURISTICOS_VISITADOS: BASE_API + 'usuarios/pontosVisitados/{cpfUsuario}',
+	FIND_BALANCO_FINANCEIRO_COMPLETO: BASE_API + 'balancoFinanceiro/completo',
+	FIND_BALANCO_FINANCEIRO_ATUAL: BASE_API + 'balancoFinanceiro/atual'
+
 };
 
 export const Erro: any = {
@@ -58,8 +63,7 @@ export const Erro: any = {
 export const routePieces = {
 	home: 'home',
 	cadastro: {
-		aluno: 'cadastro/aluno',
-		professor: 'cadastro/professor',
+		cliente: 'cadastro/cliente',
 		admin: 'cadastro/admin/kkkbl23aindnfejpoiae11nmova23sdjofwflllaa26'
 	},
 	email: 'email',
@@ -67,31 +71,10 @@ export const routePieces = {
 	recursoAula: 'recursoAula',
 	cadastroMaterial: 'cadastroMaterial',
 	cadastroCurso: 'cadastroCurso',
-	aprovacao: {
-		curso: 'aprovacao/curso',
-		professor: 'aprovacao/professor'
-	},
-	listagemCurso: {
-		professor: 'listagemCurso/professor',
-		aluno: 'listagemCurso/aluno'
+	listagemPonto: {
+		admin: 'listagemPonto/admin',
+		cliente: 'listagemPonto/cliente'
 	},
 	perfil: 'perfil'
-
-}
-
-export const ACAO = {
-	INSERT_UPDATE: 'insert',
-	UPDATE: 'update',
-	GET: 'get',
-	DELETE: 'delete',
-	APROVAR_PROFESSOR: 'aprovarProfessor',
-	REPROVAR_PROFESSOR: 'desaprovarProfessor',
-	APROVAR_CURSO: 'aprovarCurso',
-	REPROVAR_CURSO: 'desaprovarCurso',
-	LOGIN: 'login',
-	LOGIN_ADMIN: 'loginAdm',
-	USUARIO_ESTA_LOGADO: 'usuarioLogado',
-	USUARIO_PODE_LOGAR: 'usuarioPodeLogar',
-	LOGOUT: 'logout'
 
 }

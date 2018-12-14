@@ -68,7 +68,7 @@ export class LoginComponent implements OnInit {
 
 	goToCadastro() {
 
-		this.redirectService.goTo(routePieces.cadastro.aluno);
+		this.redirectService.goTo(routePieces.cadastro.cliente);
 
 	}
 
@@ -80,27 +80,36 @@ export class LoginComponent implements OnInit {
 		}
 
 		this.loginService.login(this.isAdmin, user).subscribe(
-			(response: any) => {
+			(usuario: any) => {
 
-				if(response.status) {
+				if(!usuario.cpf) {
 
-					let userToBeStored = response.valor;
-
-					userToBeStored.roles = [
-						{ authority: nivelAcesso[userToBeStored.nivel_acesso]}
-					]
-
-					this.authService.auth(userToBeStored);
-					localStorage.setItem(headersNames.Authorization, 'tokenTeste');
-					this.redirectService.goTo(routePieces.home);
-
-				} else {
-
-					this.alertService.showAlert(response.valor, 'error');
+					this.alertService.showAlert(messages.loginIncorreto, 'error');
+					return;
 
 				}
 
-			}
+				let userToBeStored = usuario;
+
+				if(userToBeStored.admin) {
+
+					userToBeStored.roles = [
+						{ authority: nivelAcesso[0]}
+					]
+
+				} else {
+
+					userToBeStored.roles = [
+						{ authority: nivelAcesso[1]}
+					]
+
+				}
+
+				this.authService.auth(userToBeStored);
+				localStorage.setItem(headersNames.Authorization, 'tokenTeste');
+				this.redirectService.goTo(routePieces.home);
+			},
+			(error) => this.alertService.showAlert('Erro ao realizar login', 'error')
 		);
 
 	}

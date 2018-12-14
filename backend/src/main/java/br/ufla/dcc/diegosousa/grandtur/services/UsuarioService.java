@@ -13,7 +13,7 @@ public interface UsuarioService {
 
     void save(Usuario usuario);
 
-    BooleanDTO login(Usuario usuario);
+    Usuario login(Usuario usuario);
 
     Integer getNumeroUsuariosAtivos();
 

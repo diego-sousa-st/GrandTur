@@ -34,13 +34,13 @@ export class ItemCursoComponent implements OnInit {
 
 	modoExibicaoIsProfessor(): boolean {
 
-		return this.modoExibicao === routeParams.tipo.professor;
+		return this.modoExibicao === routeParams.tipo.admin;
 
 	}
 
 	modoExibicaoIsCliente(): boolean {
 
-		return this.modoExibicao === routeParams.tipo.aluno;
+		return this.modoExibicao === routeParams.tipo.cliente;
 
 	}
 

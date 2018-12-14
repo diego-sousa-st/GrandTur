@@ -29,7 +29,7 @@
     "ngx-bootstrap": "^3.0.1",
     "ngx-mask": "^7.2.0",
     "ngx-toastr": "^9.1.1",
-    "popper.js": "^1.14.4",
+    "popper.js": "^1.14.6",
     "rxjs": "^6.0.0",
     "zone.js": "~0.8.26"
   },

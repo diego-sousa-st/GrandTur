@@ -16,7 +16,7 @@ export class PerfilClienteGuard implements CanActivate, CanLoad {
 
 	canActivate(): Observable<boolean> {
 
-		return this.authService.hasAnyAuthority(['ROLE_ALUNO']).pipe(
+		return this.authService.hasAnyAuthority(['ROLE_CLIENTE']).pipe(
 			map(hasAnyAuthority => {
 
 				if(!hasAnyAuthority) {

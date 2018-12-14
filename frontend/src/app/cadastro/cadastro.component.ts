@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { NavegacaoService } from '../shared/services/navegacao.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import * as _ from 'lodash';
-import { CadastroService } from '../shared/services/cadastro.service';
 import { sexo, routeParams, routePieces } from '../app.constants';
 import { AlertService } from '../shared/services/alert.service';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute, Params } from '@angular/router';
+import { UsuarioService } from '../shared/services/usuario.service';
 
 @Component({
 	selector: 'app-cadastro',
@@ -20,13 +20,13 @@ export class CadastroComponent implements OnInit {
 	subscriptions: Subscription[] = [];
 
 	isAdmin = false;
-	isProfessor = false;
+	isCliente = false;
 	isAluno = false;
 
 	constructor(
 		private redirectService: NavegacaoService,
 		private formBuilder: FormBuilder,
-		private cadastroService: CadastroService,
+		private usuarioService: UsuarioService,
 		private alertService: AlertService,
 		private activatedRoute: ActivatedRoute
 	) {
@@ -46,7 +46,7 @@ export class CadastroComponent implements OnInit {
 		this.formulario = this.formBuilder.group({
 			nome: [null, [Validators.required, Validators.maxLength(45)]],
 			cpf: [null, Validators.required],
-			sexo: [null, Validators.required],
+			// sexo: [null, Validators.required],
 			email: [null, Validators.required],
 			senha: [null, [Validators.required, Validators.minLength(10)]],
 			senhaRedigitada: [null, [Validators.required, Validators.minLength(10)]],
@@ -61,24 +61,12 @@ export class CadastroComponent implements OnInit {
 			if(params.tipo === routeParams.tipo.admin) {
 
 				this.isAdmin = true;
-				this.isProfessor = false;
-				this.isAluno = false;
+				this.isCliente = false;
 
-			}
+			} else {
 
-			if(params.tipo === routeParams.tipo.professor) {
-
-				this.isProfessor = true;
-				this.isAdmin = false;
-				this.isAluno = false;
-
-			}
-
-			if(params.tipo === routeParams.tipo.aluno) {
-
-				this.isAluno = true;
-				this.isAdmin = false;
-				this.isProfessor = false;
+				this.isAdmin = true;
+				this.isCliente = false;
 
 			}
 
@@ -93,7 +81,7 @@ export class CadastroComponent implements OnInit {
 
 	goToCadastroProfessor() {
 
-		this.redirectService.goTo(routePieces.cadastro.professor);
+		this.redirectService.goTo(routePieces.cadastro.admin);
 
 	}
 
@@ -105,84 +93,19 @@ export class CadastroComponent implements OnInit {
 
 	}
 
-	cadastrarAdministrador() {
-
-		this.cadastroService.cadastrarAdministrador(this.formulario.value).subscribe(
-			(response) => {
-
-				if(response.status) {
-
-					this.alertService.showAlert('Administrador cadastrado com sucesso!','success');
-					this.redirectService.redirectToLogin();
-
-				} else {
-
-					this.alertService.showAlert('Erro ao cadastrar administrador!','error');
-
-				}
-
-			}
-		);
-
-	}
-
-	cadastrarProfessor() {
-
-		this.cadastroService.cadastrarProfessor(this.formulario.value).subscribe(
-			(response) => {
-
-				if(response.status) {
-
-					this.alertService.showAlert('Professor cadastrado com sucesso!','success');
-					this.redirectService.redirectToLogin();
-
-				} else {
-
-					this.alertService.showAlert('Erro ao cadastrar Professor!','error');
-
-				}
-
-			}
-		);
-
-	}
-
-	cadastrarAluno() {
-
-		this.cadastroService.cadastrarAluno(this.formulario.value).subscribe(
-			(response) => {
-
-				if(response.status) {
-
-					this.alertService.showAlert('Aluno cadastrado com sucesso!','success');
-					this.redirectService.redirectToLogin();
-
-				} else {
-
-					this.alertService.showAlert('Erro ao cadastrar aluno!','error');
-
-				}
-
-			}
-		);
-
-	}
-
 	cadastrarUsuario() {
 
-		if(this.isAdmin) {
+		this.usuarioService.cadastrarUsuario(this.formulario.value).subscribe(
+			(response) => {
 
-			this.cadastrarAdministrador();
 
-		} else if(this.isAluno) {
+					this.alertService.showAlert('Usuário cadastrado com sucesso!','success');
+					this.redirectService.redirectToLogin();
 
-			this.cadastrarAluno();
 
-		} else if(this.isProfessor) {
-
-			this.cadastrarProfessor();
-
-		}
+				},
+			(error)	=> this.alertService.showAlert('Erro ao cadastrar usuário!','error')
+		);
 
 	}
 

@@ -32,7 +32,7 @@ public class Usuarios extends BaseController {
     @PostMapping("usuarios/login")
     public String login(@RequestBody Usuario usuario) {
 
-        return renderJSON(this.usuarioService.login(usuario), BooleanDTOSerializer.result);
+        return renderJSON(this.usuarioService.login(usuario), UsuarioSerializer.find);
 
     }
 
