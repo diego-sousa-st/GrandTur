@@ -69,7 +69,7 @@ export class MenuPrincipalComponent implements OnInit {
 
 	goToHome() {
 
-	// TODO enviar para o home componente
+		this.redirectService.redirectToHome();
 
 	}
 
@@ -82,6 +82,18 @@ export class MenuPrincipalComponent implements OnInit {
 	goToPerfil() {
 
 		this.redirectService.goTo(routePieces.perfil);
+
+	}
+
+	goToCompraCreditos() {
+
+
+
+	}
+
+	goToMinhasCompras() {
+
+
 
 	}
 

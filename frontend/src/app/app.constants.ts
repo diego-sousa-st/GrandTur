@@ -78,3 +78,8 @@ export const routePieces = {
 	perfil: 'perfil'
 
 }
+
+export const tipoModal = {
+	confirmacaoExclusao: 'EXCLUSAO',
+	confirmacaoCompra: 'COMPRA'
+}

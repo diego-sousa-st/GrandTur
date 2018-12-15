@@ -1,0 +1,20 @@
+.w-100#item-ponto
+	.w-100.title
+		h5 {{ getNome() }}
+	.w-100.image
+		img([src]="getImageSource()", alt="Imagem do ponto turístico")
+	.w-100#action-area
+		button.btn.btn-primary.btn-action(*ngIf='!isComprando()', (click)='visualizar()', title='Visualizar ponto turístico')
+			i.fa.fa-fw.fa-eye
+		button.btn.btn-primary.btn-action(*ngIf='modoExibicaoIsCliente() && !isComprando()', (click)='comprar()', title='Comprar ticket')
+			i.fa.fa-fw.fa-dollar
+		button.btn.btn-primary.btn-action(*ngIf='modoExibicaoIsAdmin() && !isComprando()', (click)='editarPontoTuristico()', title='Editar ponto turístico')
+			i.fa.fa-fw.fa-pencil
+		button.btn.btn-primary.btn-action(*ngIf='modoExibicaoIsAdmin() && !isComprando()', (click)='openModalConfirmacaoExclusao()', title='Excluir ponto turístico')
+			i.fa.fa-fw.fa-trash
+		div.mt-1(*ngIf='isComprando()')
+			form([formGroup]='formulario', (ngSubmit)='openModalConfirmacaoCompra()')
+				.form-row.d-flex.justify-content-center
+					input.form-control.mb-1(type="text", placeholder="Quantidade de ticktes", formControlName='qtdTickets')
+				.form-row.d-flex.justify-content-center
+					button.form-contral.btn.btn-primary(type="submit") Comprar

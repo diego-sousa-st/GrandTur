@@ -1,0 +1,15 @@
+.modal-header
+	h6.modal-title {{ titulo }}
+	button.close#fecharButton(aria-label='Close', data-dismiss='modal', type='button', (click)="activeModal.hide()")
+		span(aria-hidden='true')
+			i.fa.fa-times-circle
+.modal-body
+	span.text-justify {{ conteudo }}
+.modal-footer.justify-content-between
+	button.btn.btn-secondary#cancelarButton(type='button', (click)="cancelar()")
+		i.fa.fa-close.mr-2
+		span {{ textoBotaoCancelar }}
+
+	button.btn.btn-primary#confirmarButton(type='button', (click)="executar()")
+		i.fa.fa-check.mr-2
+		span {{ textoBotaoConfirmar }}

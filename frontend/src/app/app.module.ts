@@ -8,13 +8,13 @@ import { CadastroComponent } from './cadastro/cadastro.component';
 import { AppRoutingModule } from './app.routing.module';
 import { LoginComponent } from './login/login.component';
 import { RodapeComponent } from './rodape/rodape.component';
-import { ItemCursoComponent } from './item-curso/item-curso.component';
+import { itemPontoComponent } from './item-ponto/item-ponto.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { RecursoAulaComponent } from './recurso-aula/recurso-aula.component';
 import { EmailComponent } from './email/email.component';
 import { CadastroMaterialComponent } from './cadastro-material/cadastro-material.component';
 import { MenuPrincipalComponent } from './menu-principal/menu-principal.component';
-import { ListagemCursoComponent } from './listagem-curso/listagem-curso.component';
+import { ListagemPontoComponent } from './listagem-ponto/listagem-ponto.component';
 import { ToastrModule } from 'ngx-toastr';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
@@ -26,6 +26,8 @@ import { PerfilProfessorGuard } from './shared/security/guards/perfilProfessor.g
 import { PerfilClienteGuard } from './shared/security/guards/perfilCliente.guard';
 import { LoginGuard } from './shared/security/guards/login.guard';
 import {NgxMaskModule} from 'ngx-mask'
+import { BsModalService, ModalModule } from 'ngx-bootstrap/modal';
+import { GenericModalComponent } from './shared/modais/generic-modal/generic-modal.component';
 
 @NgModule({
 	declarations: [
@@ -33,13 +35,14 @@ import {NgxMaskModule} from 'ngx-mask'
 		CadastroComponent,
 		LoginComponent,
 		RodapeComponent,
-		ItemCursoComponent,
+		itemPontoComponent,
 		PerfilComponent,
 		RecursoAulaComponent,
 		EmailComponent,
 		CadastroMaterialComponent,
 		MenuPrincipalComponent,
-		ListagemCursoComponent
+		ListagemPontoComponent,
+		GenericModalComponent
 	],
 	imports: [
 		BrowserModule,
@@ -50,7 +53,8 @@ import {NgxMaskModule} from 'ngx-mask'
 		HttpClientModule,
 		HttpModule,
 		ToastrModule.forRoot({ positionClass: 'toast-top-center', preventDuplicates: true }),
-		NgxMaskModule.forRoot()
+		NgxMaskModule.forRoot(),
+		ModalModule.forRoot()
 	],
 	providers: [
 		{ provide: HTTP_INTERCEPTORS, useClass: HttpAuthResponseInterceptor, multi: true },
@@ -59,7 +63,11 @@ import {NgxMaskModule} from 'ngx-mask'
 		PerfilAdminGuard,
 		PerfilProfessorGuard,
 		PerfilClienteGuard,
-		LoginGuard
+		LoginGuard,
+		BsModalService
+	],
+	entryComponents: [
+		GenericModalComponent
 	],
 	bootstrap: [AppComponent]
 })

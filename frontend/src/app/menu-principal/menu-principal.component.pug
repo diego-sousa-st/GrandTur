@@ -1,5 +1,5 @@
 .padding-padrao.m-0#menu
-	img.img-padrao(src="assets/Logo.png", alt="Logo GrandTur")
+	img.img-padrao.pointer(src="assets/Logo.png", alt="Logo GrandTur", (click)='goToHome()')
 	ul(*ngIf='usuarioIsAdmin()')
 		a((click)='goToCadastroPontoTuristico()', title="Cadastrar ponto turístico")
 			li.btn-primary  Cadastrar ponto turístico
@@ -7,16 +7,17 @@
 			li.btn-primary Balanço financeiro completo
 		a((click)='goToBalancoFinanceiroAtual()', title="Calcular balanço financeiro deste mês")
 			li.btn-primary Balanço financeiro atual
-	form.form-inline([formGroup]='formulario', (ngSubmit)='pesquisar()')
-		input#pesquisa.form-control.mr-2(type="text", name="pesquisa", placeholder="Nome, cidade, descrição...", formControlName='termo')
-		button.btn.btn-primary(type="submit")
-			i.fa.fa-fw.fa-search
 
 	ul(*ngIf='usuarioIsCliente()')
 		a((click)='goToCompraCreditos()', title="Comprar créditos")
 			li.btn-primary Comprar créditos
 		a((click)='goToMinhasCompras()', title="Minhas compras")
 			li.btn-primary Minhas compras
+
+	form.form-inline([formGroup]='formulario', (ngSubmit)='pesquisar()')
+		input#pesquisa.form-control.mr-2(type="text", name="pesquisa", placeholder="Nome, cidade, descrição...", formControlName='termo')
+		button.btn.btn-primary(type="submit", title='Pesquisar')
+			i.fa.fa-fw.fa-search
 	.logout
 		a.mr-3((click)='goToPerfil()') {{ 'Usuário: ' + usuario.nome }}
 		button.btn.btn-primary((click)='logout()', title="Sair")
