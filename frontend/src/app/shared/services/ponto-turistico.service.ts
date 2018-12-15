@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { HttpCustomizedService } from './http-customized.service';
 import { api } from 'src/app/app.constants';
 import { map } from 'rxjs/operators';
 import * as _ from 'lodash';
+import { UsuarioService } from './usuario.service';
 
 @Injectable({
 	providedIn: 'root'
@@ -12,7 +13,10 @@ export class PontoTuristicoService {
 
 	listaPontosTuristicos: any[] = [];
 
-	constructor(private http: HttpCustomizedService) { }
+	private usuario = new Subject<any[]>();
+	usuario$ = this.usuario.asObservable();
+
+	constructor(private http: HttpCustomizedService, private usuarioService: UsuarioService) { }
 
 	pesquisar(termo: string): Observable<any> {
 
@@ -53,7 +57,17 @@ export class PontoTuristicoService {
 
 		const resource = api.COMPRAR_TICKET;
 
-		return this.http.post(resource, compra);
+		return this.http.post(resource, compra).pipe(
+			map(() => {
+
+				let usuario = this.usuarioService.getUsuario();
+				usuario.credito = usuario.credito - compra.valor;
+				this.usuarioService.setUsuario(usuario);
+
+				this.usuario.next(usuario);
+
+			})
+		);
 
 	}
 
@@ -69,7 +83,9 @@ export class PontoTuristicoService {
 	buscar10UltimosCadastrados(): Observable<any> {
 
 		const resource = api.FIND_10_ULTIMOS_PONTOS_CADASTRADOS.replace('{cpfUsuario}', '0');
-		return this.http.get(resource);
+		return this.http.get(resource).pipe(
+			map((pontos) => this.listaPontosTuristicos = pontos)
+		);
 
 	}
 

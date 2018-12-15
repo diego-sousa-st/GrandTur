@@ -101,6 +101,14 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Override
     public void comprar(Compra compra) {
 
+        Usuario usuarioSalvo = this.usuarioRepository.findByCpf(compra.getUsuario().getCpf());
+
+        Integer saldoRestante = usuarioSalvo.getCredito() - compra.getValor().intValue();
+
+        usuarioSalvo.setCredito(saldoRestante);
+
+        this.usuarioRepository.save(usuarioSalvo);
+
         compra.setData(new Date());
         this.compraRepository.save(compra);
 

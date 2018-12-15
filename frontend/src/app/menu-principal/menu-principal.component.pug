@@ -20,6 +20,7 @@
 			i.fa.fa-fw.fa-search
 	.logout
 		a.mr-3((click)='goToPerfil()') {{ 'Usuário: ' + usuario.nome }}
+		span.mr-4(*ngIf='usuarioIsCliente()') {{ usuario.credito | currency:'BRL' }}
 		button.btn.btn-primary((click)='logout()', title="Sair")
 			span.mr-2 Sair
 			i.fa.fa-fw.fa-arrow-right

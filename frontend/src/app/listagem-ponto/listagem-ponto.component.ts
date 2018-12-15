@@ -17,7 +17,11 @@ export class ListagemPontoComponent implements OnInit {
 
 	pontosTuristicos: any[] = [];
 
-	constructor(private activatedRoute: ActivatedRoute, private pontoTuristicoService: PontoTuristicoService) {
+	constructor(
+		private activatedRoute: ActivatedRoute,
+		private pontoTuristicoService: PontoTuristicoService,
+		private usuarioService: UsuarioService
+	) {
 
 		this.listenToRoute();
 
@@ -48,7 +52,21 @@ export class ListagemPontoComponent implements OnInit {
 			if(url[0].path === 'home') {
 
 				this.pontoTuristicoService.buscar10UltimosCadastrados().subscribe(
-					(pontos) => this.pontosTuristicos = pontos
+					(pontos) => {
+
+						this.pontosTuristicos = pontos;
+
+						if(this.usuarioService.getUsuario().admin) {
+
+							this.modoExibicao = routeParams.tipo.admin;
+
+						} else {
+
+							this.modoExibicao = routeParams.tipo.cliente							;
+
+						}
+
+					}
 				);
 
 			}

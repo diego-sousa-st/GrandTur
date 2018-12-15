@@ -24,6 +24,7 @@ export class UsuarioService {
 	setUsuario(usuario: any) {
 
 		this.usuario = usuario;
+		localStorage.setItem(userStore, JSON.stringify(usuario));
 
 	}
 

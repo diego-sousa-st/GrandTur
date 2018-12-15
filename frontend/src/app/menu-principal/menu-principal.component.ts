@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { perfis, routePieces } from '../app.constants';
 import { UsuarioService } from '../shared/services/usuario.service';
 import { NavegacaoService } from '../shared/services/navegacao.service';
@@ -6,16 +6,19 @@ import { LoginService } from '../shared/security/services/login.service';
 import { AuthService } from '../shared/security/services/auth.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { PontoTuristicoService } from '../shared/services/ponto-turistico.service';
+import { Subscription } from 'rxjs';
 
 @Component({
 	selector: 'app-menu-principal',
 	templateUrl: './menu-principal.component.pug',
 	styleUrls: ['./menu-principal.component.scss']
 })
-export class MenuPrincipalComponent implements OnInit {
+export class MenuPrincipalComponent implements OnInit, OnDestroy {
 
 	usuario: any;
 	formulario: FormGroup;
+
+	subscriptions: Subscription[] = [];
 
 	constructor(
 		private usuarioService: UsuarioService,
@@ -30,6 +33,13 @@ export class MenuPrincipalComponent implements OnInit {
 
 		this.usuario = this.usuarioService.getUsuario();
 		this.loadForm();
+		this.listenToChangeOnUsuario();
+
+	}
+
+	ngOnDestroy() {
+
+		this.subscriptions.forEach(subscription => subscription.unsubscribe());
 
 	}
 
@@ -38,6 +48,14 @@ export class MenuPrincipalComponent implements OnInit {
 		this.formulario = this.formBuilder.group({
 			termo: [null]
 		});
+
+	}
+
+	listenToChangeOnUsuario() {
+
+		this.subscriptions.push(this.pontoTuristicoService.usuario$.subscribe(
+			(usuario) => this.usuario = usuario
+		));
 
 	}
 
@@ -73,8 +91,9 @@ export class MenuPrincipalComponent implements OnInit {
 
 	}
 
-	goToMeusCursos() {
+	goToCadastroPontoTuristico() {
 
+			// TODO alterar para o cadastro de ponto turistico
 		this.redirectService.goTo(routePieces.listagemPonto.cliente);
 
 	}
@@ -82,6 +101,14 @@ export class MenuPrincipalComponent implements OnInit {
 	goToPerfil() {
 
 		this.redirectService.goTo(routePieces.perfil);
+
+	}
+
+	goToBalancoFinanceiroCompleto() {
+
+	}
+
+	goToBalancoFinanceiroAtual() {
 
 	}
 

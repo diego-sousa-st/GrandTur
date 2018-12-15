@@ -143,7 +143,11 @@ export class itemPontoComponent implements OnInit, Executavel {
 			let compra = this.createCompra();
 
 			this.pontoTuristicoService.comprar(compra).subscribe(
-				() => this.alertService.showAlert(messages.compraSucesso, 'success'),
+				() => {
+
+					this.alertService.showAlert(messages.compraSucesso, 'success')
+
+				},
 				() => this.alertService.showAlert('Erro ao efetuar compra', 'error'),
 			);
 

@@ -8,6 +8,7 @@ import br.ufla.dcc.diegosousa.grandtur.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
@@ -24,7 +25,21 @@ public class PontoTuristicoServiceImpl implements PontoTuristicoService {
     @Override
     public Set<PontoTuristico> findUltimos10PontosCadastrados(String cpfUsuario) {
 
-        return this.pontoTuristicoRepository.findFirst10ByOrderByIdDesc();
+        Set<PontoTuristico> pontoTuristicosValidos = new HashSet<>();
+
+        Set<PontoTuristico> pontoTuristicosSalvo = this.pontoTuristicoRepository.findFirst10ByOrderByIdDesc();
+
+        pontoTuristicosSalvo.forEach(pontoTuristico -> {
+
+            if(pontoTuristico.getAtivo()) {
+
+                pontoTuristicosValidos.add(pontoTuristico);
+
+            }
+
+        });
+
+        return pontoTuristicosValidos;
 
     }
 
@@ -46,7 +61,21 @@ public class PontoTuristicoServiceImpl implements PontoTuristicoService {
     @Override
     public Set<PontoTuristico> search(String termo) {
 
-        return this.pontoTuristicoRepository.findAllByNomeOrCidadeOrComplementoOrDescricao(termo, termo, termo, termo);
+        Set<PontoTuristico> pontoTuristicosValidos = new HashSet<>();
+
+        Set<PontoTuristico> pontoTuristicosSalvo = this.pontoTuristicoRepository.findAllByNomeOrCidadeOrComplementoOrDescricao(termo, termo, termo, termo);
+
+        pontoTuristicosSalvo.forEach(pontoTuristico -> {
+
+            if(pontoTuristico.getAtivo()) {
+
+                pontoTuristicosValidos.add(pontoTuristico);
+
+            }
+
+        });
+
+        return pontoTuristicosValidos;
 
     }
 
