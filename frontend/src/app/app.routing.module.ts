@@ -14,6 +14,8 @@ import { AuthGuard } from './shared/security/guards/auth.guard';
 import { LoginGuard } from './shared/security/guards/login.guard';
 import { PerfilProfessorGuard } from './shared/security/guards/perfilProfessor.guard';
 import { PerfilAdminGuard } from './shared/security/guards/perfilAdmin.guard';
+import { CompraCreditoComponent } from './compra-credito/compra-credito.component';
+import { PerfilClienteGuard } from './shared/security/guards/perfilCliente.guard';
 
 // some routes are for debug
 
@@ -24,8 +26,7 @@ const appRoutes: Routes = [
 	{ path: 'login/:tipo', component: LoginComponent, canActivate: [LoginGuard]},
 	{ path: 'login/:tipo/kkkbl23aindnfejpoiae11nmova23sdjofwflllaa26', component: LoginComponent, canActivate: [LoginGuard]},
 	{ path: 'perfil', component: PerfilComponent, canActivate: [AuthGuard] },
-	// { path: 'recursoAula', component: RecursoAulaComponent, canActivate: [AuthGuard] },
-	// { path: 'email', component: EmailComponent, canActivate: [PerfilProfessorGuard] },
+	{ path: 'credito', component: CompraCreditoComponent, canActivate: [PerfilClienteGuard] },
 	{ path: 'cadastroMaterial', component: CadastroMaterialComponent, canActivate: [PerfilProfessorGuard] },
 	{ path: 'listagemPonto/:tipo', component: ListagemPontoComponent, canActivate: [AuthGuard] },
 	{ path: '',   redirectTo: '/home', pathMatch: 'full' },

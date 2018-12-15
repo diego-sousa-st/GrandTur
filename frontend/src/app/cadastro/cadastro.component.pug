@@ -9,10 +9,7 @@ form.account-block.padding-padrao([formGroup]='formulario', (ngSubmit)='cadastra
 				label CPF: *
 				input.form-control#cpf(type="text", formControlName='cpf', maxlength='14', mask='000.000.000-00')
 			.col-6
-				//- label Sexo: *
-				//- select.form-control(formControlName='sexo')
-				//- 	option([ngValue]='sexo.masculino') M
-				//- 	option([ngValue]='sexo.feminino') F
+
 	.form-group
 		label Email: *
 		input.form-control#email(type="email", formControlName='email', maxlength=45)

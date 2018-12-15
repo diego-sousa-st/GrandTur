@@ -1,0 +1,9 @@
+#compra-credito.padding-padrao
+	form([formGroup]='formulario', (ngSubmit)='comprar()')
+		.form-group
+			label Valor:
+			input.form-control.mb-2(type="number", formControlName='valor')
+		.form-group
+			.form-inline
+				button.btn.btn-default.mr-2(type='button', (click)='cancelar()') Cancelar
+				button.btn.btn-primary.mr-2(type='submit', [attr.disabled]="formulario.invalid ? 'disabled' : null") Comprar

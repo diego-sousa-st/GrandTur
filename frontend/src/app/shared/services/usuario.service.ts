@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { sexo, userStore, api } from 'src/app/app.constants';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { HttpCustomizedService } from './http-customized.service';
+import { map } from 'rxjs/operators';
 
 @Injectable({
 	providedIn: 'root'
@@ -9,6 +10,9 @@ import { HttpCustomizedService } from './http-customized.service';
 export class UsuarioService {
 
 	private usuario: any;
+
+	private usuarioSubject = new Subject<any[]>();
+	usuario$ = this.usuarioSubject.asObservable();
 
 	constructor(private http: HttpCustomizedService) {}
 
@@ -49,6 +53,22 @@ export class UsuarioService {
 
 		const resource = api.SAVE_USUARIO;
 		return this.http.post(resource, usuario);
+
+	}
+
+	comprarCredito(valor: number): Observable<any> {
+
+		const resource = api.COMPRAR_CREDITO.replace('{cpfUsuario}', this.usuario.cpf).replace('{valor}', valor.toString());
+
+		return this.http.get(resource).pipe(
+			map((response) => {
+
+				this.usuario.credito = this.usuario.credito + valor;
+				this.usuarioSubject.next(this.usuario);
+				return response;
+
+			})
+		);
 
 	}
 

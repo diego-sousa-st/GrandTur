@@ -91,10 +91,9 @@ public class UsuarioServiceImpl implements UsuarioService {
         if(usuarioSalvo != null) {
 
             usuarioSalvo.comprarCredito(valor);
+            this.usuarioRepository.save(usuarioSalvo);
 
         }
-
-        this.usuarioRepository.save(usuarioSalvo);
 
     }
 

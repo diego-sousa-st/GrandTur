@@ -28,6 +28,7 @@ import { LoginGuard } from './shared/security/guards/login.guard';
 import {NgxMaskModule} from 'ngx-mask'
 import { BsModalService, ModalModule } from 'ngx-bootstrap/modal';
 import { GenericModalComponent } from './shared/modais/generic-modal/generic-modal.component';
+import { CompraCreditoComponent } from './compra-credito/compra-credito.component';
 
 @NgModule({
 	declarations: [
@@ -42,7 +43,8 @@ import { GenericModalComponent } from './shared/modais/generic-modal/generic-mod
 		CadastroMaterialComponent,
 		MenuPrincipalComponent,
 		ListagemPontoComponent,
-		GenericModalComponent
+		GenericModalComponent,
+		CompraCreditoComponent
 	],
 	imports: [
 		BrowserModule,

@@ -57,6 +57,10 @@ export class MenuPrincipalComponent implements OnInit, OnDestroy {
 			(usuario) => this.usuario = usuario
 		));
 
+		this.subscriptions.push(this.usuarioService.usuario$.subscribe(
+			(usuario) => this.usuario = usuario
+		));
+
 	}
 
 	usuarioIsAdmin(): boolean {
@@ -114,7 +118,7 @@ export class MenuPrincipalComponent implements OnInit, OnDestroy {
 
 	goToCompraCreditos() {
 
-
+		this.redirectService.goTo('credito');
 
 	}
 
