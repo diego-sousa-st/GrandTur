@@ -1,0 +1,19 @@
+#balanco-financeiro.padding-padrao
+	div(*ngIf='balanco')
+		.mb-2
+			label Número de usuarios:
+			span {{ balanco?.numeroUsuarios }}
+		.mb-2
+			label Número de pontos turísticos ativos:
+			span {{ balanco?.numeroPontosTuristicos }}
+		.mb-2
+			label Número de vendas realizadas:
+			span {{ balanco?.numeroVendas }}
+		.mb-2
+			label Média de gasto por cada usuário:
+			span {{ balanco?.mediaGastoPorUsuario }}
+		.mb-2
+			label Receita:
+			span {{ balanco?.receita }}
+	div(*ngIf='!balanco')
+		h3 Ainda não existem compras no sistema. Portanto, não é possível fazer um balanço financeiro

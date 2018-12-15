@@ -1,0 +1,28 @@
+.box-form.padding-padrao
+	h3(*ngIf='modoIsCadastro()') Cadastrar novo ponto turístico
+	h3(*ngIf='!modoIsCadastro()') Alterar dados do ponto turístico
+	form#ponto-turistico([formGroup]='formulario', (ngSubmit)='cadastrarPontoTuristico()')
+		.form-group
+			label Nome: *
+			input#nome.form-control(type='text', name="nome", formControlName='nome', maxlength=45)
+		.form-group
+			label País: *:
+			input#pais.form-control(name="pais", type='text', formControlName='pais', maxlength=45)
+		.form-group
+			label Cidade: *
+			input#cidade.form-control(type='text', name="cidade", formControlName='cidade', maxlength=45)
+		.form-group
+			label Complemento: *:
+			input#complemento.form-control(name="complemento", type='text', formControlName='complemento', maxlength=2000)
+		.form-group
+			label Descrição: *
+			input#descricao.form-control(type='text', name="descricao", formControlName='descricao', maxlength=2000)
+		.form-group
+			label Valor por pessoa: *:
+			input#valor.form-control(name="valor", type='number', formControlName='valor', maxlength=45)
+		//- .form-group
+		//- 	label.d-block Imagens: *
+		//- 	input#imagens(type='file', name="imagens", formControlName='imagens', maxlength=45, multiple)
+
+		button.btn.btn-primary(*ngIf='modoIsCadastro()', type='submit', [attr.disabled]="formulario.invalid ? 'disabled' : null") Cadastrar
+		button.btn.btn-primary(*ngIf='!modoIsCadastro()', type='submit', [attr.disabled]="formulario.invalid ? 'disabled' : null") Alterar

@@ -75,7 +75,11 @@ export class PontoTuristicoService {
 
 		const resource = api.SAVE_PONTOS_TURISTICOS;
 
-		return this.http.post(pontoTuristico, resource);
+		pontoTuristico.usuario = this.usuarioService.getUsuario();
+		pontoTuristico.ativo = true;
+		pontoTuristico.imagens = [];
+
+		return this.http.post(resource, pontoTuristico);
 
 
 	}
@@ -86,6 +90,15 @@ export class PontoTuristicoService {
 		return this.http.get(resource).pipe(
 			map((pontos) => this.listaPontosTuristicos = pontos)
 		);
+
+	}
+
+	find(idPonto): Observable<any> {
+
+		const resource = api.FIND_PONTO_TURISTICO.replace('{id}', idPonto);
+
+		return this.http.get(resource);
+
 
 	}
 

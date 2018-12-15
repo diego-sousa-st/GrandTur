@@ -12,7 +12,7 @@ import { itemPontoComponent } from './item-ponto/item-ponto.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { RecursoAulaComponent } from './recurso-aula/recurso-aula.component';
 import { EmailComponent } from './email/email.component';
-import { CadastroMaterialComponent } from './cadastro-material/cadastro-material.component';
+import { CadastroPontoTuristicoComponent } from './cadastro-ponto-turistico/cadastro-ponto-turistico.component';
 import { MenuPrincipalComponent } from './menu-principal/menu-principal.component';
 import { ListagemPontoComponent } from './listagem-ponto/listagem-ponto.component';
 import { ToastrModule } from 'ngx-toastr';
@@ -29,6 +29,7 @@ import {NgxMaskModule} from 'ngx-mask'
 import { BsModalService, ModalModule } from 'ngx-bootstrap/modal';
 import { GenericModalComponent } from './shared/modais/generic-modal/generic-modal.component';
 import { CompraCreditoComponent } from './compra-credito/compra-credito.component';
+import { BalancoFinanceiroComponent } from './balanco-financeiro/balanco-financeiro.component';
 
 @NgModule({
 	declarations: [
@@ -40,11 +41,12 @@ import { CompraCreditoComponent } from './compra-credito/compra-credito.componen
 		PerfilComponent,
 		RecursoAulaComponent,
 		EmailComponent,
-		CadastroMaterialComponent,
+		CadastroPontoTuristicoComponent,
 		MenuPrincipalComponent,
 		ListagemPontoComponent,
 		GenericModalComponent,
-		CompraCreditoComponent
+		CompraCreditoComponent,
+		BalancoFinanceiroComponent
 	],
 	imports: [
 		BrowserModule,

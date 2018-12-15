@@ -1,4 +1,5 @@
 .padding-padrao#listagem-ponto
+	h3#count(*ngIf='haPontosTuristicos()') Número de pontos turísticos: {{ pontosTuristicos.length }}
 	ng-container(*ngFor='let ponto of pontosTuristicos; index as i;')
 		app-item-ponto.m-2([item]='ponto', [modoExibicao]='modoExibicao')
 	h3(*ngIf='!haPontosTuristicos()') Não foram encontrados pontos turísticos

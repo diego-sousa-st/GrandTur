@@ -58,7 +58,19 @@ export class itemPontoComponent implements OnInit, Executavel {
 
 	getImageSource() {
 
-		return 'https://blog.rangle.io/content/images/2016/11/rangleio-blog-first-time-using-scrum-to-build-software.gif';
+		const imagens = [
+			'https://blog.rangle.io/content/images/2016/11/rangleio-blog-first-time-using-scrum-to-build-software.gif',
+			'https://abrilcasacor.files.wordpress.com/2018/06/07-pontos-turisticos-russia.jpg?quality=70&strip=info&w=919',
+			'https://1.bp.blogspot.com/-B37DwlFEe-0/U3q8l6bKbvI/AAAAAAAAV2g/MhgnuYNgAgc/s1600/estatua-liberdade-new-york.jpg',
+			'https://1.bp.blogspot.com/-uMn90ewU0Rs/VeSuNBT3lFI/AAAAAAAAl_Q/C5ZVGMct2kMkfREWEn2aU7oRG6hUN27ugCKgB/s1600/torre-de-pisa-italia.jpg',
+			'https://media-cdn.tripadvisor.com/media/photo-s/0d/97/c5/8e/ponto-turistico-em-ita.jpg',
+			'https://2.bp.blogspot.com/-IrBvJMCYVZ0/VIeeBZbOaTI/AAAAAAAAgdo/ZEho4bqWwm8/s1600/orlando-pontos-turisticos.jpg',
+			'https://3.bp.blogspot.com/-k_yX2NkPez4/U2weYsrq_GI/AAAAAAAAVnI/nDchnlo8Fww/s1600/Stratosphere-Cassino-Ponto-Turistico.jpg'
+		];
+
+		let pos = Math.floor(Math.random() * 7);
+
+		return imagens[pos];
 
 	}
 
@@ -103,8 +115,7 @@ export class itemPontoComponent implements OnInit, Executavel {
 
 	editarPontoTuristico() {
 
-		// alterar para ir pra cadastro de ponto turistico
-		this.redirectService.goTo(routePieces.cadastroMaterial);
+		this.redirectService.goTo('pontoTuristico/' + this.item.id);
 
 	}
 

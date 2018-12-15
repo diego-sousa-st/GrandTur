@@ -69,6 +69,26 @@ export class ListagemPontoComponent implements OnInit {
 					}
 				);
 
+			} else if(url[0].path === 'minhasCompras') {
+
+				this.usuarioService.findPontosTuristicosVisitados().subscribe(
+					(pontos) => {
+
+						this.pontosTuristicos = pontos;
+
+						if(this.usuarioService.getUsuario().admin) {
+
+							this.modoExibicao = routeParams.tipo.admin;
+
+						} else {
+
+							this.modoExibicao = routeParams.tipo.cliente							;
+
+						}
+
+					}
+				);
+
 			}
 
 		}));

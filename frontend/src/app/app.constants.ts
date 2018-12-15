@@ -75,11 +75,25 @@ export const routePieces = {
 		admin: 'listagemPonto/admin',
 		cliente: 'listagemPonto/cliente'
 	},
-	perfil: 'perfil'
+	perfil: 'perfil',
+	pontoTuristico: {
+		cadastro: 'pontoTuristico/cadastro',
+		edicao: 'pontoTuristico/edicao'
+	}
 
-}
+};
 
 export const tipoModal = {
 	confirmacaoExclusao: 'EXCLUSAO',
 	confirmacaoCompra: 'COMPRA'
+};
+
+export const tipoBalanco = {
+	completo: 'completo',
+	atual: 'atual'
+};
+
+export const tipoPonto = {
+	cadastro: 'cadastro',
+	edicao: 'edicao'
 }

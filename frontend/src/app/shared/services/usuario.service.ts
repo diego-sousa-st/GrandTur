@@ -72,4 +72,12 @@ export class UsuarioService {
 
 	}
 
+	findPontosTuristicosVisitados(): Observable<any> {
+
+		const resource = api.FIND_PONTOS_TURISTICOS_VISITADOS.replace('{cpfUsuario}', this.usuario.cpf);
+
+		return this.http.get(resource);
+
+	}
+
 }

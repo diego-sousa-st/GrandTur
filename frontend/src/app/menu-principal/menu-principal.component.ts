@@ -97,8 +97,7 @@ export class MenuPrincipalComponent implements OnInit, OnDestroy {
 
 	goToCadastroPontoTuristico() {
 
-			// TODO alterar para o cadastro de ponto turistico
-		this.redirectService.goTo(routePieces.listagemPonto.cliente);
+		this.redirectService.goTo(routePieces.pontoTuristico.cadastro);
 
 	}
 
@@ -110,9 +109,13 @@ export class MenuPrincipalComponent implements OnInit, OnDestroy {
 
 	goToBalancoFinanceiroCompleto() {
 
+		this.redirectService.goTo('balanco/completo');
+
 	}
 
 	goToBalancoFinanceiroAtual() {
+
+		this.redirectService.goTo('balanco/atual');
 
 	}
 
@@ -124,7 +127,7 @@ export class MenuPrincipalComponent implements OnInit, OnDestroy {
 
 	goToMinhasCompras() {
 
-
+		this.redirectService.goTo('minhasCompras');
 
 	}
 
