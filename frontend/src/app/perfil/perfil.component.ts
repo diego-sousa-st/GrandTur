@@ -37,7 +37,7 @@ export class PerfilComponent implements OnInit {
 		this.formulario = this.formBuilder.group({
 			id: null,
 			nome: [null, [Validators.required, Validators.maxLength(45)]],
-			cpf: [{value: null, disabled: true}, Validators.required],
+			cpf: [null, Validators.required],
 			// sexo: [null, Validators.required],
 			email: [null, Validators.required],
 			senhaAntiga: [null, [Validators.required, Validators.minLength(10)]],

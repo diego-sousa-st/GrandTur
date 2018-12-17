@@ -11,7 +11,7 @@
 			span {{ balanco?.numeroVendas }}
 		.mb-2
 			label Média de gasto por cada usuário:
-			span {{ balanco?.mediaGastoPorUsuario }}
+			span {{ balanco?.mediaGastoPorUsuario | currency: 'BRL' }}
 		.mb-2
 			label Receita:
 			span {{ balanco?.receita }}

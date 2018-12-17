@@ -143,7 +143,6 @@ export class itemPontoComponent implements OnInit, Executavel {
 
 		} else {
 
-
 			if(this.valor > this.usuarioService.getUsuario().credito) {
 
 				this.alertService.showAlert(messages.saldoInsuficiente, 'error');

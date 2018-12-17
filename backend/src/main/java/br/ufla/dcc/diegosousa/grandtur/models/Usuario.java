@@ -51,7 +51,7 @@ public class Usuario {
     public void update(Usuario usuario) {
 
         email = usuario.getEmail();
-        nome = usuario.getSenha();
+        nome = usuario.getNome();
         senha = usuario.getSenha();
 
     }
